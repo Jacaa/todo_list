@@ -1,0 +1,10 @@
+!!!
+%html
+  %head
+    %title ToDo
+    = render 'layouts/default'
+    = render 'layouts/shim' 
+  %body
+    .container
+      = yield
+      = render 'layouts/footer'
