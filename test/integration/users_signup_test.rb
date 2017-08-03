@@ -10,10 +10,12 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
                                          password: "password",
                                          password_confirmation: "password"}}
     end
+    assert_redirected_to root_url
     follow_redirect!
     assert_template 'static_pages/index'
     assert_not flash.empty?
     assert_select "div.alert-success"
+    assert user_is_logged_in?
   end
 
   test "invalid signup" do
@@ -25,7 +27,7 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
                                          password_confirmation: "pass"}}
     end
     assert_template 'users/new'
-    # Invalid email and password_confirmation doesn't match password
+    # Invalid email, and password_confirmation doesn't match password
     assert_select "div#error-explanation"
     assert_select "li", count: 2 
   end

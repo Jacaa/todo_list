@@ -1,6 +1,8 @@
 .center.jumbotron#start
-  %h1 Welcome to ToDo list
-  = link_to 'Sign up', signup_path, class: 'btn btn-primary'
-  = link_to 'Login', '#', class: 'btn btn-primary'  
-
-
+  - if logged_in?
+    %h5= @user.name
+    = link_to "Logout", logout_path, method: :delete
+  - else
+    %h1 Welcome to ToDo list
+    = link_to 'Sign up', signup_path, class: 'btn btn-primary'
+    = link_to 'Login', login_path, class: 'btn btn-primary'  
