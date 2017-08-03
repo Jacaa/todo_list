@@ -24,5 +24,6 @@ class SiteLayoutTest < ActionDispatch::IntegrationTest
     assert_template 'sessions/new'
     assert_select "a[href=?]", root_path
     assert_select "input[type=submit]", count: 1
+    assert_select "input[type=checkbox]", count: 1
   end
 end

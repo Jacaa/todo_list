@@ -72,4 +72,9 @@ class UserTest < ActiveSupport::TestCase
     @user.password = @user.password_confirmation = "12345"
     assert_not @user.valid?
   end
+
+  test "remember token should be generated" do
+    @user.save
+    assert_not_nil @user.remember_token
+  end
 end

@@ -4,3 +4,4 @@ jack:
   name: Jack
   email: jack@example.com
   password_digest: <%= User.digest('password') %>
+  remember_token: <%= User.new_token %>

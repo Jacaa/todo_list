@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   before_save { self.email = email.downcase }
+  before_create { generate_token(:remember_token)}
 
   validates :name, presence: true, length: { maximum: 255 }
   
@@ -17,5 +18,13 @@ class User < ApplicationRecord
                                                   BCrypt::Engine.cost
     BCrypt::Password.create(string, cost: cost)
   end
+  
+  def User.new_token
+    SecureRandom.urlsafe_base64
+  end
 
+  # Generate new token
+  def generate_token(column)
+    self[column] = User.new_token
+  end
 end
