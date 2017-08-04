@@ -1,6 +1,7 @@
 class User < ApplicationRecord
-  before_save { self.email = email.downcase }
+  before_save { downcase_email }
   before_create { generate_token(:remember_token)}
+  before_create { generate_token(:activation_token)}
 
   validates :name, presence: true, length: { maximum: 255 }
   
@@ -23,6 +24,16 @@ class User < ApplicationRecord
     SecureRandom.urlsafe_base64
   end
 
+  def activate
+    update_attribute(:activated, true)
+  end
+  
+  private
+
+  def downcase_email
+    self.email = email.downcase
+  end
+  
   # Generate new token
   def generate_token(column)
     self[column] = User.new_token

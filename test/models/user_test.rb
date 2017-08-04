@@ -77,4 +77,9 @@ class UserTest < ActiveSupport::TestCase
     @user.save
     assert_not_nil @user.remember_token
   end
+
+  test "activation token should be generated" do
+    @user.save
+    assert_not_nil @user.activation_token
+  end 
 end

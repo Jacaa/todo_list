@@ -5,3 +5,5 @@ jack:
   email: jack@example.com
   password_digest: <%= User.digest('password') %>
   remember_token: <%= User.new_token %>
+  activation_token: <%= User.new_token %>
+  activated: true
