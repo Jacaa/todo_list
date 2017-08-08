@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  before_save { downcase_email }
+  before_save   { downcase_email }
   before_create { generate_token(:remember_token)}
   before_create { generate_token(:activation_token)}
 
@@ -11,7 +11,7 @@ class User < ApplicationRecord
                     uniqueness: { case_sensitive: false }
   
   has_secure_password
-  validates :password, presence: true, length: { minimum: 6 }
+  validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
   
   # Returns the hash digest of the given string.
   def User.digest(string)
@@ -19,23 +19,42 @@ class User < ApplicationRecord
                                                   BCrypt::Engine.cost
     BCrypt::Password.create(string, cost: cost)
   end
-  
+
+  # Returns random string/token
   def User.new_token
     SecureRandom.urlsafe_base64
   end
-
+  
+  # Activates new user
   def activate
     update_attribute(:activated, true)
   end
+
+  def create_password_reset_token
+    update_columns(password_reset_sent_at:  Time.zone.now,
+                   password_reset_token:    User.new_token)
+  end
   
+  def password_reset_token_expired?
+    password_reset_sent_at < 2.hours.ago
+  end
+
+  def send_activation_email
+    UserMailer.activation(self).deliver_now
+  end
+
+  def send_password_reset_email
+    UserMailer.password_reset(self).deliver_now
+  end
+
   private
 
-  def downcase_email
-    self.email = email.downcase
-  end
-  
-  # Generate new token
-  def generate_token(column)
-    self[column] = User.new_token
-  end
+    def downcase_email
+      self.email = email.downcase
+    end
+    
+    # Generate new token
+    def generate_token(column)
+      self[column] = User.new_token
+    end
 end

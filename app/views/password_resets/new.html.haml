@@ -1,0 +1,11 @@
+.center.jumbotron
+  = link_to "Home", root_path
+  %h1 Write an email
+  .row
+    .col-lg-6.col-lg-offset-3
+      = form_for :password_reset, url: password_resets_path do |f|
+        .form-group
+          = f.label :email
+          = f.email_field :email, class: "form-control"
+      
+        = f.submit "Send email", class: "btn btn-primary"

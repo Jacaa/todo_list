@@ -81,5 +81,12 @@ class UserTest < ActiveSupport::TestCase
   test "activation token should be generated" do
     @user.save
     assert_not_nil @user.activation_token
-  end 
+  end
+
+  test "password reset token should be generated" do
+    @user.save
+    @user.create_password_reset_token
+    assert_not_nil @user.reload.password_reset_token
+    assert_not_nil @user.reload.password_reset_sent_at
+  end
 end
