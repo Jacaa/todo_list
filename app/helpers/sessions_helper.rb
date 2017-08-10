@@ -23,6 +23,10 @@ module SessionsHelper
     end
   end
 
+  def correct_user?(user)
+    user == current_user
+  end
+  
   def logged_in?
     !current_user.nil?
   end
