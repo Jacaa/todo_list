@@ -12,6 +12,20 @@ class SiteLayoutTest < ActionDispatch::IntegrationTest
     assert_select "a[href=?]", login_path
   end
 
+  test "index page layout when logged in" do
+    user = users(:jack)
+    log_in_as(user)
+    get root_path
+    assert_template 'static_pages/index'
+    assert_select 'a[href=?]', edit_user_path(user)
+    assert_select 'a[href=?]', logout_path
+    assert_select 'textarea'
+    user.tasks.each do |task|
+      assert_match task.content, response.body
+    end
+    assert_select 'a', text: 'delete', count: user.tasks.count
+  end
+
   test "signup page layout" do
     get signup_path
     assert_template 'users/new'

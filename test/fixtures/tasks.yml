@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+last:
+  content: First
+  created_at: <%= 2.hours.ago %>
+  user: jack
+
+two:
+  content: Second
+  created_at: <%= 1.hours.ago %>
+  user: jack
+
+other:
+  content: Third
+  created_at: <%= 10.minutes.ago %>
+  user: other
+
+most_recent:
+  content: Fourth
+  created_at: <%= Time.zone.now %>
+  user: other

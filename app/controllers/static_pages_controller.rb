@@ -1,6 +1,10 @@
 class StaticPagesController < ApplicationController
   
   def index
-    @user = current_user if logged_in?
+    if logged_in?
+      @user  = current_user
+      @tasks = @user.tasks
+      @task  = @user.tasks.build
+    end
   end
 end

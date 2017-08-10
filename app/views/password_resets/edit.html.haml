@@ -4,7 +4,7 @@
   .row
     .col-lg-6.col-lg-offset-3
       = form_for(@user, url: password_reset_path(params[:id])) do |f|
-        = render 'shared/errors'
+        = render 'shared/errors', object: f.object
         .form-group
           = f.label :password
           = f.password_field :password, class: "form-control"

@@ -1,0 +1,8 @@
+- unless task.content.nil?
+  %li{id: "task-#{task.id}"}
+    %span.content
+      = task.content
+    %span.timestamp
+      = task.created_at
+    
+    = link_to "delete", task, method: :delete, data: { confirm: "You sure?" }

@@ -89,4 +89,12 @@ class UserTest < ActiveSupport::TestCase
     assert_not_nil @user.reload.password_reset_token
     assert_not_nil @user.reload.password_reset_sent_at
   end
+
+  test "associated tasks should be destroyed" do
+    @user.save
+    @user.tasks.create!(content: "Lorem ipsum")
+    assert_difference 'Task.count', -1 do
+      @user.destroy
+    end
+  end
 end

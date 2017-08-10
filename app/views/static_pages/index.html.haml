@@ -3,6 +3,10 @@
     %h5= @user.name
     = link_to "Logout", logout_path, method: :delete
     = link_to "Settings", edit_user_path(@user)
+    = render 'tasks/task_form'
+    - if @user.tasks.any?
+      %ul.tasks
+        = render @tasks
   - else
     %h1 Welcome to ToDo list
     = link_to 'Sign up', signup_path, class: 'btn btn-primary'
