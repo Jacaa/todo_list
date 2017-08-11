@@ -21,7 +21,7 @@ class TaskTest < ActiveSupport::TestCase
     assert_not @task.valid?
   end
 
-  test "order should be last task first" do 
+  test "last task should be shown first" do 
     assert_equal tasks(:last), Task.first
   end
 end

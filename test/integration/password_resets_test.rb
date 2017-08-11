@@ -15,8 +15,7 @@ class PasswordResetsTest < ActionDispatch::IntegrationTest
     assert_not flash.empty?
     assert_template 'password_resets/new'
     # Valid email
-    post password_resets_path,
-         params: { password_reset: { email: @user.email } }
+    post password_resets_path, params: { password_reset: { email: @user.email }}
     assert_not_equal @user.password_reset_token, @user.reload.password_reset_token
     assert_equal 1, ActionMailer::Base.deliveries.size
     assert_not flash.empty?
@@ -39,22 +38,13 @@ class PasswordResetsTest < ActionDispatch::IntegrationTest
     assert_template 'password_resets/edit'
     assert_select "input[name=email][type=hidden][value=?]", user.email
     # Invalid password & confirmation
-    patch password_reset_path(user.password_reset_token), 
-          params: { email: user.email,
-                    user: { password:              "foobar",
-                            password_confirmation: "barfoo" } }
+    change_password(user, "foobar", "barfoo")
     assert_select 'div#error-explanation'
     # Empty password
-    patch password_reset_path(user.password_reset_token),
-          params: { email: user.email,
-                    user: { password:              "",
-                            password_confirmation: "" } }
+    change_password(user, "", "")
     assert_select 'div#error-explanation'
     # Valid password & confirmation
-    patch password_reset_path(user.password_reset_token),
-          params: { email: user.email,
-                    user: { password:              "foobar",
-                            password_confirmation: "foobar" } }
+    change_password(user, "foobar", "foobar")
     assert user_is_logged_in?
     assert_not flash.empty?
     assert_redirected_to root_url
@@ -62,15 +52,11 @@ class PasswordResetsTest < ActionDispatch::IntegrationTest
 
   test "expired token" do
     get new_password_reset_path
-    post password_resets_path,
-         params: { password_reset: { email: @user.email } }
+    post password_resets_path, params: { password_reset: { email: @user.email }}
 
     @user = assigns(:user)
     @user.update_attribute(:password_reset_sent_at, 3.hours.ago)
-    patch password_reset_path(@user.password_reset_token),
-          params: { email: @user.email,
-                    user: { password:              "foobar",
-                            password_confirmation: "foobar" } }
+    change_password(@user, "foobar", "foobar")
     assert_redirected_to new_password_reset_path
     follow_redirect!
     assert_not flash.empty?

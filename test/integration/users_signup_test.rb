@@ -46,8 +46,6 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
                                          password_confirmation: "pass"}}
     end
     assert_template 'users/new'
-    # Invalid email, and password_confirmation doesn't match password
     assert_select "div#error-explanation"
-    assert_select "li", count: 2 
   end
 end

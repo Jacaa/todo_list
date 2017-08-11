@@ -1,6 +1,6 @@
 class PasswordResetsController < ApplicationController
-  before_action :get_user, only:         [:edit, :update]
-  before_action :valid_user, only:       [:edit, :update]
+  before_action :get_user,         only: [:edit, :update]
+  before_action :valid_user,       only: [:edit, :update]
   before_action :check_expiration, only: [:edit, :update]
 
   def new
@@ -47,7 +47,7 @@ class PasswordResetsController < ApplicationController
 
     def valid_user
       redirect_to root_url unless @user && @user.activated? && 
-                              (@user.password_reset_token == params[:id])
+                                 (@user.password_reset_token == params[:id])
     end
 
     def check_expiration

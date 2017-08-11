@@ -10,19 +10,21 @@ class UserTest < ActiveSupport::TestCase
   test "should be valid" do
     assert @user.valid?
   end
-
+  
+  # Name validations
   test "name should be present" do
     @user.name = nil
-    assert_not @user.valid?
-  end
-
-  test "email should be present" do
-    @user.email = nil
     assert_not @user.valid?
   end
   
   test "name should not be too long" do
     @user.name = "a" * 256
+    assert_not @user.valid?
+  end
+  
+  # Email validations
+  test "email should be present" do
+    @user.email = nil
     assert_not @user.valid?
   end
 
@@ -63,6 +65,7 @@ class UserTest < ActiveSupport::TestCase
     assert_equal non_lower_case_email.downcase, @user.email
   end
 
+  # Password validations
   test "password should not be blank" do
     @user.password = @user.password_confirmation = "      "
     assert_not @user.valid?
@@ -72,7 +75,8 @@ class UserTest < ActiveSupport::TestCase
     @user.password = @user.password_confirmation = "12345"
     assert_not @user.valid?
   end
-
+  
+  # Tokens
   test "remember token should be generated" do
     @user.save
     assert_not_nil @user.remember_token
@@ -89,7 +93,8 @@ class UserTest < ActiveSupport::TestCase
     assert_not_nil @user.reload.password_reset_token
     assert_not_nil @user.reload.password_reset_sent_at
   end
-
+  
+  # User's task
   test "associated tasks should be destroyed" do
     @user.save
     @user.tasks.create!(content: "Lorem ipsum")

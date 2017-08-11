@@ -19,4 +19,12 @@ class ActionDispatch::IntegrationTest
                                           password: password,
                                           remember_me: remember_me}}
   end
+  
+  # Used by password reset integration test
+  def change_password(user, password, password_confirmation)
+    patch password_reset_path(user.password_reset_token),
+          params: { email: user.email,
+                    user: { password:              password,
+                            password_confirmation: password_confirmation } }
+  end
 end

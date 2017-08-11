@@ -6,18 +6,18 @@ class TasksInterfaceTest < ActionDispatch::IntegrationTest
     @user = users(:jack)
     log_in_as @user
   end
-
-  test "tasks interface" do
-    log_in_as @user
+  
+  test "create task" do
     get root_path
     assert_template 'static_pages/index'
-    # Invalid task
+    # Invalid submission
+    content = ""
     assert_no_difference 'Task.count' do
-      post tasks_path, params: { task: { content: "" } }
+      post tasks_path, params: { task: { content: content } }
     end
     assert_not flash.empty?
     assert_redirected_to root_url
-    # Valid task
+    # Valid submission
     content = "Lorem ipsum"
     assert_no_match content, response.body
     assert_difference 'Task.count', 1 do
@@ -27,7 +27,11 @@ class TasksInterfaceTest < ActionDispatch::IntegrationTest
     assert_redirected_to root_url
     follow_redirect!
     assert_match content, response.body
-    # Delete task
+  end
+
+  test "destroy task" do
+    get root_path
+    assert_template 'static_pages/index'
     assert_select 'a', text: 'delete'
     task = @user.tasks.first
     assert_match task.content, response.body
@@ -36,5 +40,7 @@ class TasksInterfaceTest < ActionDispatch::IntegrationTest
     end
     assert_not flash.empty?
     assert_redirected_to root_url
+    follow_redirect!
+    assert_no_match task.content, response.body
   end
 end
