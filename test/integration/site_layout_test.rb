@@ -7,7 +7,12 @@ class SiteLayoutTest < ActionDispatch::IntegrationTest
     assert_template 'static_pages/index'
     assert_select "title", "ToDo"
     assert_select "a[href=?]", signup_path
-    assert_select "a[href=?]", login_path
+    assert_select "a[href=?]", root_path
+    assert_select "input[type=email]",    count: 1
+    assert_select "input[type=password]", count: 1
+    assert_select "input[type=checkbox]", count: 1
+    assert_select "input[type=submit]",   count: 1
+    assert_select "a[href=?]", new_password_reset_path
   end
 
   test "index page layout when user is logged in" do
@@ -20,7 +25,6 @@ class SiteLayoutTest < ActionDispatch::IntegrationTest
     assert_select 'textarea'
     assert_select "input[type=submit]", count: 1
     assert_select 'a', text: 'delete', count: user.tasks.count
-    assert_match user.name, response.body
     user.tasks.each do |task|
       assert_match task.content, response.body
     end
@@ -34,17 +38,6 @@ class SiteLayoutTest < ActionDispatch::IntegrationTest
     assert_select "input[type=text]",     count: 1
     assert_select "input[type=password]", count: 2
     assert_select "input[type=submit]",   count: 1
-  end
-
-  test "login page layout" do
-    get login_path
-    assert_template 'sessions/new'
-    assert_select "a[href=?]", root_path
-    assert_select "input[type=email]",    count: 1
-    assert_select "input[type=password]", count: 1
-    assert_select "input[type=checkbox]", count: 1
-    assert_select "input[type=submit]",   count: 1
-    assert_select "a[href=?]", new_password_reset_path
   end
 
   test "new password-reset page layout" do

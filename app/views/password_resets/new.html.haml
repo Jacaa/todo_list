@@ -1,11 +1,12 @@
-.center.jumbotron
-  = link_to "Home", root_path
-  %h1 Write an email
+= render 'shared/nav_non_logged_in'
+
+.container#welcome
   .row
-    .col-lg-6.col-lg-offset-3
+    = render 'shared/flash_message'
+    .col-xs-8.col-xs-offset-2.col-sm-4.col-sm-offset-6.col-lg-3.col-lg-offset-7.forms
       = form_for :password_reset, url: password_resets_path do |f|
         .form-group
-          = f.label :email
-          = f.email_field :email, class: "form-control"
-      
-        = f.submit "Send email", class: "btn btn-primary"
+          = f.email_field :email, placeholder: "Write your email", class: "form-control"
+
+        .text-center
+          = f.submit "Send email", class: "btn orange-gradient-btn"

@@ -1,13 +1,29 @@
-.center.jumbotron#start
-  - if logged_in?
-    %h5= @user.name
-    = link_to "Logout", logout_path, method: :delete
-    = link_to "Settings", edit_user_path(@user)
-    = render 'tasks/task_form'
-    - if @user.tasks.any?
-      %ul.tasks
-        = render @tasks
-  - else
-    %h1 Welcome to ToDo list
-    = link_to 'Sign up', signup_path, class: 'btn btn-primary'
-    = link_to 'Login', login_path, class: 'btn btn-primary'  
+- if logged_in?
+  = render 'shared/nav_logged_in'
+  .container#main-page
+    .row
+      .col-sm-8.col-sm-offset-2
+        .users-todo
+          - if @user.tasks.any?
+            %h2 
+            Todo (
+            = @user.tasks.count
+            ) 
+            %ul.tasks
+              = render @tasks
+- else
+  = render 'shared/nav_non_logged_in'
+  .container#welcome
+    .row
+      = render 'shared/flash_message'
+      .col-sm-6.col-sm-offset-1.col-xs-9.col-xs-offset-2.col-lg-5.col-lg-offset-2
+        .welcome
+          %h2 Organize your time with ToDo list and free your mind!
+      .col-sm-3.col-sm-offset-1.col-xs-8.col-xs-offset-2.col-lg-3.col-lg-offset-1
+        = render 'sessions/new'
+  .container
+    .row.text-center#about
+      %h2 About
+    %br  
+    = render 'layouts/footer'
+

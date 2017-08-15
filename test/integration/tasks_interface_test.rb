@@ -38,7 +38,6 @@ class TasksInterfaceTest < ActionDispatch::IntegrationTest
     assert_difference 'Task.count', -1 do
       delete task_path(task)
     end
-    assert_not flash.empty?
     assert_redirected_to root_url
     follow_redirect!
     assert_no_match task.content, response.body

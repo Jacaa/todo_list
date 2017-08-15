@@ -13,22 +13,20 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
     assert_redirected_to root_url
     follow_redirect!
     assert_template 'static_pages/index'
-    assert_select "a[href=?]", login_path, count: 0
     assert_select "a[href=?]", logout_path
-    assert_match @user.name, response.body
+    assert_select "a[href=?]", edit_user_path(@user)
     # Log out
     delete logout_path
     assert_redirected_to root_url
     follow_redirect!
     assert_template 'static_pages/index'
-    assert_select "a[href=?]", login_path
+    assert_select "input[value=?]", "Login"
     assert_select "a[href=?]", logout_path, count: 0
-    assert_no_match @user.name, response.body
   end
 
   test "login with invalid information" do
     log_in_as(@user, password: " ")
-    assert_template 'sessions/new'
+    assert_template 'static_pages/index'
     assert_not flash.empty?
   end
 

@@ -15,7 +15,6 @@ class TasksController < ApplicationController
 
   def destroy
     @task.destroy
-    flash[:info] = "Task destroyed."
     redirect_to root_url
   end
 

@@ -46,8 +46,12 @@ class PasswordResetsController < ApplicationController
     end
 
     def valid_user
-      redirect_to root_url unless @user && @user.activated? && 
-                                 (@user.password_reset_token == params[:id])
+      unless @user && @user.activated? && (@user.password_reset_token == params[:id])
+        msg = "Your account was not activated."
+        msg += " Check your email for activation link."
+        flash[:danger] = msg
+        redirect_to root_url
+      end
     end
 
     def check_expiration

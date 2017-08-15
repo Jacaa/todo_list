@@ -1,8 +1,241 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import url('https://fonts.googleapis.com/css?family=Karla|Pacifico');
+
 
 /* universal */
 
-.center {
+* {
+  box-sizing: border-box;
+  font-family: 'Karla', sans-serif;
+}
+
+.orange-gradient-btn{
+  margin-bottom: 10px;
+  background-image: -webkit-linear-gradient(#FF8200, #FF4F00);
+  border: none;
+}
+
+.btn {
+  color: #EEE;
+}
+
+.alert {
   text-align: center;
+}
+
+/* navbar */
+
+nav {
+  background-color: rgba(255, 255, 255, 0.8)
+}
+
+.navbar {
+  padding: 0 25px;
+  a {
+    color: #EEE;
+  }
+}
+.navbar-brand, a.navbar-brand {
+  font-family: 'Pacifico', sans-serif;
+  font-size: 2em;
+  color: #4D4D4D;
+}
+
+/* navbar logged in */
+
+li.dropdown a {
+  color: #4D4D4D;
+}
+
+.container-fluid#logged-in-navbar {
+  padding: 0 20%;
+  border-bottom: 1px solid #FF8200;
+  .navbar-brand {
+    margin-top: 8px;
+  }
+  input[type=submit] {
+    margin-top: 6px;
+  }
+  span {
+    margin-top: 16px;
+    transform: scale(1.5);
+  }
+  .navbar-form.navbar-left {
+    width: 60%;
+    margin-left: 10%;
+    text-align: center;
+  }
+  .form-group {
+    width: 70%;
+    textarea {
+      width: 100%;
+    }
+  }
+
+}
+
+
+/* footer */
+
+footer {
+  margin: 1% 0;
+}
+
+/* error forms */
+
+#error-explanation ul {
+  list-style: none;
+  color: red;
+}
+
+/* welcome page */
+
+.container#welcome {
+  margin-top: 50px;
+  width: 100%;
+  padding-bottom: 100px;
+  background-image: url('welcome-background.jpg');
+  background-repeat: no-repeat;
+  background-position: top;
+  background-size: cover;
+  background-attachment: fixed;
+  h2, span {
+    font-family: 'Pacifico', sans-serif;
+  }
+}
+
+.welcome {
+  text-align: center;
+}
+
+#about {
+  font-family: 'Pacifico', sans-serif;
+  height: 500px;
+}
+
+/* log in form */
+
+.login-with-apps {
+  width: 100%;
+  text-align: center;
+  margin-top: 70px;
+  padding-bottom: 15px;
+  margin-bottom: 15px;
+  border-bottom: 2px solid #6D6D6D;
+}
+
+.login-with-email {
+  margin-bottom: 50px;
+  a {
+    font-size: 1.1em;
+    color: black;
+  }
+}
+
+input[type=checkbox] {
+  transform: scale(1.25);
+}
+
+.form-group label {
+  font-size: 1.1em;
+  font-weight: 400;
+  margin-right: 2%;
+}
+
+.oauth-icons {
+  display: inline-block;
+  width: 20%;
+  padding-bottom: 20%;
+  margin: 0 7px;
+}
+
+.twitter {
+  background-color: #0078FF;
+}
+
+.google {
+  background-color: #FF1E00;
+}
+
+.github {
+  background-color: #24292E;
+}
+
+.login-with-email {
+  clear: left;
+}
+
+#login-btn {
+  width: 66%;
+}
+
+/* singup form */
+
+.forms {
+  margin-top: 5%;
+  margin-bottom: 10%;
+}
+
+.nav > li > a {
+  padding: 6px 15px;
+}
+
+
+/* main page */
+
+.container#main-page {
+  margin-top: 50px;
+  padding: 40px 0;
+}
+
+textarea {
+  resize: none;
+  width: 20%;
+}
+
+.users-todo ul {
+  list-style: none;
+  li {
+    margin: 5px;
+    padding: 10px;
+  }
+  li:hover {
+    border: 1px solid #4D4D4D;
+
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  #mobile-nav {
+    text-align: center;
+    .btn {
+      width: 50%;
+      margin-left: 25%;
+      margin-right: 25%;
+    }
+  }
+
+  .container#welcome {
+    margin-top: 115px;
+    background-image: url('welcome-background-mobile.jpg');
+  }
+
+  .navbar-brand {
+    float: none;
+  }
+
+  .navbar-header {
+    margin-top: 15px;
+  }
+}
+
+@media only screen and (min-width: 1600px) {
+  .login-with-email {
+    margin-bottom: 35%;
+  }
+
+  .welcome {
+    margin-top: 5%;
+  }
 }

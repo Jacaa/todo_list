@@ -18,7 +18,7 @@ class SessionsController < ApplicationController
       end
     else
       flash.now[:danger] = "Invalid email/password!"
-      render 'new'
+      render 'static_pages/index'
     end
   end
 
