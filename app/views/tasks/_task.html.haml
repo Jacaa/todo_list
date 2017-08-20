@@ -1,8 +1,14 @@
 - unless task.content.nil?
   %li{id: "task-#{task.id}"}
-    %span.content
+    .done
+      %span.glyphicon.glyphicon-ok
+    .content
       = task.content
-    %span.timestamp
-      = task.created_at
-    
-    = link_to "delete", task, method: :delete, data: { confirm: "You sure?" }
+    .settings
+      .options
+        %span.glyphicon.glyphicon-envelope
+        %span.glyphicon.glyphicon-pencil
+        %a{href: task_path(task), data: { confirm: "You sure?", method: :delete} }
+          %span.glyphicon.glyphicon-remove
+      .timestamp
+        %span= task.created_at.strftime("%d %b %Y")

@@ -46,6 +46,9 @@ nav {
 
 li.dropdown a {
   color: #4D4D4D;
+  &:hover {
+    background-color: #FFF;
+  }
 }
 
 .container-fluid#logged-in-navbar {
@@ -71,6 +74,12 @@ li.dropdown a {
     textarea {
       width: 100%;
     }
+  }
+  li.dropdown {
+    display: block;
+  }
+  li.mobile-settings {
+    display: none;
   }
 
 }
@@ -196,18 +205,83 @@ textarea {
 
 .users-todo ul {
   list-style: none;
+  cursor: default;
   li {
-    margin: 5px;
+    margin: 10px;
     padding: 10px;
   }
   li:hover {
-    border: 1px solid #4D4D4D;
-
+    box-shadow: 5px 5px 10px rgba(0,0,0,0.3);
   }
 }
 
+.users-todo h4 {
+  margin-left: 5%;
+}
+
+
+.tasks .options a {
+  color: #4D4D4D;
+}
+
+
+.tasks span {
+  padding: 8px;
+  font-size: 0.75em;
+}
+
+.tasks a:hover {
+    background-image: -webkit-linear-gradient(#FF8200, #FF4F00);
+}
+
+
+.tasks .content {
+  display: inline-block;
+  width: 75%;
+  margin-left: 3.8%;
+  padding: 1.2%;
+}
+
+.tasks .content {
+  font-size: 1.2em;
+}
+
+.done, .timestamp, .options {
+  display: none;
+}
+
+.options, .timestamp, .settings {
+  float: right;
+
+}
+
+ul.tasks li:hover .done, ul.tasks li:hover .timestamp,
+ul.tasks li:hover .options {
+  display: block;
+}
+
+ul.tasks li:hover .settings {
+  display: inline-block;
+}
+
+ul.tasks li:hover .content {
+  margin-left: 0;
+}
+
+.tasks .settings {
+  width: 20%;
+}
+
+.tasks .done {
+  float: left;
+}
+
+.tasks .timestamp span {
+  font-size: 0.95em;
+}
+
 @media only screen and (max-width: 768px) {
-  #mobile-nav {
+  .mobile-nav {
     text-align: center;
     .btn {
       width: 50%;
@@ -238,4 +312,49 @@ textarea {
   .welcome {
     margin-top: 5%;
   }
+}
+
+@media only screen and (max-width: 768px) {
+  .container#main-page {
+    margin-top: 75px;
+  }
+  
+  .tasks .settings {
+    width: 40%;
+  }
+  .tasks .content {
+    max-width: 50%;
+  }
+
+  .container-fluid#logged-in-navbar {
+    padding: 0;
+    div {
+      display: inline-block;
+      float: left;
+    }
+    ul {
+      float: right;
+    }
+    li.dropdown {
+      display: none;
+    }
+    li.mobile-settings {
+      display: block;
+      a {
+        color: #333333;
+        font-size: 0.6em;
+      }
+    }
+    span {
+      margin-top: 0;
+    }
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .navbar-form.navbar-left {
+    padding: 0;
+    margin-left: 5%;
+  }
+  
 }

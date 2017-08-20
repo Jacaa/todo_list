@@ -18,6 +18,8 @@
           %li.divider
           %li
             = link_to "Logout", logout_path, method: "delete"
-
-
-
+      %li.mobile-settings
+        %a{href: edit_user_path(@user) }
+          %span.glyphicon.glyphicon-wrench
+        %a{href: logout_path, "data-method": :delete }
+          %span.glyphicon.glyphicon-off

@@ -2,13 +2,13 @@
   = render 'shared/nav_logged_in'
   .container#main-page
     .row
-      .col-sm-8.col-sm-offset-2
+      .col-xs-12.col-sm-10.col-sm-offset-1.col-md-8.col-md-offset-2
         .users-todo
           - if @user.tasks.any?
-            %h2 
-            Todo (
-            = @user.tasks.count
-            ) 
+            %h4 
+              Todo (
+              = @user.tasks.count
+              ) 
             %ul.tasks
               = render @tasks
 - else
