@@ -1,0 +1,16 @@
+%nav.navbar.navbar-fixed-top
+  .container-fluid#logged-in-navbar
+    .navbar-header
+      = link_to 'ToDo', root_path, class: "navbar-brand"
+    %ul.nav.navbar-nav.navbar-right
+      %li.dropdown
+        %a.dropdown-toggle{"data-toggle" => "dropdown", href: ""}
+          %span.glyphicon.glyphicon-option-vertical
+        %ul.dropdown-menu
+          %li
+            = link_to "Logout", logout_path, method: "delete"
+      %li.mobile-settings
+        %a{href: edit_user_path(@user) }
+          %span.glyphicon.glyphicon-wrench
+        %a{href: logout_path, "data-method": :delete }
+          %span.glyphicon.glyphicon-off

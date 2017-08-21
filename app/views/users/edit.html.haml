@@ -1,8 +1,8 @@
-.center.jumbotron
-  = link_to "Home", root_path
-  %h1 Edit
+= render 'shared/nav_logged_in2'
+.container#main-page
   .row
-    .col-lg-6.col-lg-offset-3
+    = render 'shared/flash_message'
+    .col-xs-8.col-xs-offset-2
       = form_for @user do |f|
         = render 'shared/errors', object: f.object
         .form-group
@@ -17,7 +17,8 @@
         .form-group
           = f.label :password_confirmation
           = f.password_field :password_confirmation, class: "form-control"
-      
-        = f.submit "Save changes", class: "btn btn-primary"
-        
-  = link_to "Delete profile", @user, method: :delete, data: { confirm: "You sure?"}
+        .text-center
+          = f.submit "Save changes", class: "btn orange-gradient-btn"
+        .text-center
+          = link_to "Delete profile", @user, method: :delete, 
+          data: { confirm: "You sure?"}, class: "btn red-border-btn"

@@ -30,9 +30,13 @@ module SessionsHelper
   def logged_in?
     !current_user.nil?
   end
-
+  
   def remember(user)
     cookies.permanent.signed[:user_id] = user.id
     cookies.permanent[:remember_token] = user.remember_token
+  end
+
+  def has_tasks?(user)
+    user.tasks.count != 0
   end
 end

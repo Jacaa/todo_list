@@ -24,10 +24,23 @@ class SiteLayoutTest < ActionDispatch::IntegrationTest
     assert_select 'a[href=?]', logout_path
     assert_select 'textarea'
     assert_select "input[type=submit]", count: 1
-    assert_select 'a', text: 'delete', count: user.tasks.count
+  end
+
+  test "index page layout when user is logged in and has todo tasks" do
+    user = users(:jack)
+    log_in_as(user)
+    get root_path
+    assert_select "span.glyphicon-remove", count: user.tasks.count
     user.tasks.each do |task|
       assert_match task.content, response.body
     end
+  end
+
+  test "index page layout when user is logged in and hasn't todo tasks" do
+    user = users(:user_no_tasks)
+    log_in_as(user)
+    get root_path
+    assert_select 'h3.no-todo-tasks'
   end
 
   test "signup page layout" do
