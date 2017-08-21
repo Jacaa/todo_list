@@ -2,19 +2,26 @@
   = render 'shared/nav_logged_in'
   .container#main-page
     .row
-      = render 'shared/flash_message'
       .col-xs-12.col-sm-10.col-sm-offset-1.col-md-8.col-md-offset-2
         .users-todo
-          - if has_tasks?(@user)
+          - if has_todo_tasks?(@user)
             %h4
               Todo (
-              = @user.tasks.count
+              = @todo_count
               ) 
             %ul.tasks
-              = render @tasks
+              = render @todo_tasks
           - else 
             .text-center
               %h3.no-todo-tasks You have nothing to do :)
+        .users-done
+          - if has_done_tasks?(@user)
+            %h4
+              Done (
+              = @done_count
+              ) 
+            %ul.tasks
+              = render @done_tasks
 - else
   = render 'shared/nav_non_logged_in'
   .container#welcome

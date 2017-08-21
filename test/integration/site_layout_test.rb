@@ -30,8 +30,8 @@ class SiteLayoutTest < ActionDispatch::IntegrationTest
     user = users(:jack)
     log_in_as(user)
     get root_path
-    assert_select "span.glyphicon-remove", count: user.tasks.count
-    user.tasks.each do |task|
+    assert_select "span.glyphicon-ok", count: user.tasks.todo.count
+    user.tasks.todo.each do |task|
       assert_match task.content, response.body
     end
   end
@@ -41,6 +41,16 @@ class SiteLayoutTest < ActionDispatch::IntegrationTest
     log_in_as(user)
     get root_path
     assert_select 'h3.no-todo-tasks'
+  end
+
+  test "index page layout when user is logged in and has done tasks" do
+    user = users(:jack)
+    log_in_as(user)
+    get root_path
+    assert_select "span.glyphicon-repeat", count: user.tasks.done.count
+    user.tasks.done.each do |task|
+      assert_match task.content, response.body
+    end
   end
 
   test "signup page layout" do

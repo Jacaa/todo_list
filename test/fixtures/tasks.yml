@@ -3,11 +3,25 @@
 last:
   content: First
   created_at: <%= 2.hours.ago %>
+  done: true
   user: jack
 
 two:
   content: Second
   created_at: <%= 1.hours.ago %>
+  done: false
+  user: jack
+
+done_task:
+  content: Third
+  created_at: <%= 20.minutes.ago %>
+  done: true
+  user: jack
+
+todo_task:
+  content: Fourth
+  created_at: <%= 10.minutes.ago %>
+  done: false
   user: jack
 
 other:

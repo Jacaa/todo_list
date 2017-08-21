@@ -36,7 +36,11 @@ module SessionsHelper
     cookies.permanent[:remember_token] = user.remember_token
   end
 
-  def has_tasks?(user)
-    user.tasks.count != 0
+  def has_todo_tasks?(user)
+    user.tasks.todo.count != 0
+  end
+
+  def has_done_tasks?(user)
+    user.tasks.done.count != 0
   end
 end

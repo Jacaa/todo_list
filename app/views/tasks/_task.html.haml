@@ -1,14 +1,26 @@
 - unless task.content.nil?
-  %li{id: "task-#{task.id}"}
-    .done
-      %span.glyphicon.glyphicon-ok
-    .content
-      = task.content
-    .settings
-      .options
-        %span.glyphicon.glyphicon-envelope
-        %span.glyphicon.glyphicon-pencil
-        %a{href: task_path(task), data: { confirm: "You sure?", method: :delete} }
-          %span.glyphicon.glyphicon-remove
-      .timestamp
-        %span= task.created_at.strftime("%d %b %Y")
+  - unless task.done?
+    %li{id: "task-#{task.id}"}
+      .done
+        %a{href: change_task_path(task)}
+          %span.glyphicon.glyphicon-ok
+      .content
+        = task.content
+      .settings
+        .options
+          %span.glyphicon.glyphicon-envelope
+          %span.glyphicon.glyphicon-pencil
+          %a{href: task_path(task), data: { confirm: "You sure?", method: :delete} }
+            %span.glyphicon.glyphicon-remove
+        .timestamp
+          %span= task.created_at.strftime("%d %b %Y")
+  - else
+    %li{id: "task-#{task.id}"}
+      .content
+        = task.content
+      .settings
+        .options
+          %a{href: change_task_path(task)}
+            %span.glyphicon.glyphicon-repeat
+          %a{href: task_path(task), data: { confirm: "You sure?", method: :delete} }
+            %span.glyphicon.glyphicon-remove

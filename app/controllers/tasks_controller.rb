@@ -1,20 +1,20 @@
 class TasksController < ApplicationController
-  before_action :logged_in_user, only: [:create, :destroy]
-  before_action :correct_user, only: :destroy
+  before_action :logged_in_user, only: [:create, :destroy, :change]
+  before_action :correct_user, only: [:destroy, :change]
 
   def create
     @task = current_user.tasks.build(task_params)
-    if @task.save
-      flash[:success] = "Task created"
-      redirect_to root_url
-    else
-      flash[:danger] = "Content can't be blank!"
-      redirect_to root_url
-    end
+    @task.save
+    redirect_to root_url
   end
 
   def destroy
     @task.destroy
+    redirect_to root_url
+  end
+
+  def change
+    @task.change_status
     redirect_to root_url
   end
 

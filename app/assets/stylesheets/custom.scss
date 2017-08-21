@@ -223,7 +223,7 @@ footer {
 .container#main-page {
   margin-top: 50px;
   padding: 40px 0;
-  .users-todo {
+  .users-todo, .users-done {
     h4 {
       margin-left: 5%;
     }
@@ -238,12 +238,14 @@ footer {
       list-style: none;
       cursor: default;
       li {
+        box-shadow: 1px 1px 1px $light-grey;
         margin: 10px;
         padding: 10px;
         &:hover {
+          border: none;
           box-shadow: 5px 5px 10px $black-opacity;
           .done, .timestamp, .options {
-            display: block;
+            display: inline-block;
           }
           .settings {
             display: inline-block;
@@ -253,15 +255,19 @@ footer {
           }
         }
       }
-      .options a {
+      .options a, .done a {
         color: $dark-grey;
         &:hover {
-          background-image: -webkit-linear-gradient($light-orange, $dark-orange);
+          text-decoration: none;
         }
       }
       span {
         padding: 8px;
         font-size: 0.75em;
+        &:hover {
+          color: $dark-orange;
+          background-color: $white;
+        }
       }
       .timestamp span {
         font-size: 0.95em;
@@ -269,8 +275,7 @@ footer {
       .content {
         display: inline-block;
         width: 75%;
-        margin-left: 3.8%;
-        padding: 1.2%;
+        padding: 1.5%;
         font-size: 1.2em;
       }
       .settings {
@@ -284,6 +289,30 @@ footer {
       .done {
         float: left;
         display: none;
+      }
+    }
+  }
+  .users-done {
+    margin-top: 5%;
+    h4 {
+      color: $medium-grey;
+    }
+    ul.tasks {
+      li {
+        color: $medium-grey;
+        font-style: italic;
+        &:hover {
+          box-shadow: 0px 0px 5px $dark-orange;
+        }
+        .done, .timestamp, .options {
+          display: block;
+        }
+        .settings {
+          display: inline-block;
+        }
+        .options a {
+          color: $medium-grey;
+        }
       }
     }
   }
@@ -366,12 +395,24 @@ footer {
 
   .container#main-page {
     margin-top: 75px;
-    ul.tasks {
-      .settings {
-        width: 40%;
-      }
-      .content {
-        max-width: 50%;
+    .users-todo, .users-done {
+      ul.tasks {
+        padding: 0;
+        .done, .settings {
+          display: inline-block;
+        }
+        .content {
+          max-width: 60%;
+        }
+        .settings {
+          width: 25%;
+          .options span {
+            padding: 4px;
+          }
+          .timestamp {
+            font-size: 1rem;
+          }
+        }
       }
     }
   }
