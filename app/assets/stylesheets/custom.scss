@@ -21,6 +21,9 @@ $white-opacity: rgba(255, 255, 255, 0.8);
 $black:        black;
 $white:        white;
 
+/* fonts */
+
+$fancy-font: 'Pacifico', sans-serif;
 
 /* universal */
 
@@ -62,7 +65,7 @@ nav {
     a {
       color: $light-grey;
       &.navbar-brand {
-        font-family: 'Pacifico', sans-serif;
+        font-family: $fancy-font;
         font-size: 2em;
         color: $dark-grey;
         &:hover {
@@ -150,14 +153,14 @@ footer {
   background-size: cover;
   background-attachment: fixed;
   h2, span {
-    font-family: 'Pacifico', sans-serif;
+    font-family: $fancy-font;
   }
 }
 
 .container#about {
   height: 500px;
   h2 {
-    font-family: 'Pacifico', sans-serif;
+    font-family: $fancy-font;
   }
 }
 
@@ -213,7 +216,12 @@ footer {
   .modal-content {
     .modal-header {
       text-align: center;
-      font-family: 'Pacifico', sans-serif;
+      color: $white;
+      font-family: $fancy-font;
+      background-image: -webkit-linear-gradient($light-orange, $dark-orange);
+      button {
+        color: $black;
+      }
     }
     .modal-body {
       width: 70%;
@@ -333,7 +341,7 @@ footer {
 
 /* media */
 
-@media only screen and (max-width: 480px) {
+@media only screen and (max-width: 480px) and (max-device-width: 480px) {
   .navbar-form.navbar-left {
     padding: 0;
     margin-left: 5%;
@@ -348,7 +356,7 @@ footer {
   }
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 768px) and (max-device-width: 768px) {
 
   /* navbar - non logged in */
 
@@ -431,7 +439,7 @@ footer {
   }
 }
 
-@media only screen and (min-width: 1600px) {
+@media only screen and (min-width: 1600px) and (min-device-width: 1600px) {
   .login-with-email {
     margin-bottom: 35%;
   }

@@ -12,7 +12,7 @@ class PasswordResetsController < ApplicationController
     if @user
       @user.create_password_reset_token
       @user.send_password_reset_email
-      flash[:info] = "Email sent with instructions."
+      flash[:info] = "Email was sent with instructions."
       redirect_to root_url
     else
       flash[:danger] = "Email not found."

@@ -1,6 +1,5 @@
-:erb
-  Hi <%= @user.name %>!
+Welcome to ToDo!
 
-Click on the link below to activate your account:
+Visit the link below to activate your account and finish signup process:
 
 = edit_activation_url(@user.activation_token, email: @user.email)

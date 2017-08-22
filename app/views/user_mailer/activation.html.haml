@@ -1,8 +1,9 @@
-%h1
-  Hi
-  = @user.name
-
-%p
-  Click on the link to activate your account:
-  = link_to "Activate!", edit_activation_url(@user.activation_token, 
-                                             email: @user.email)
+.mail{style: "text-align: center"}
+  %h1{style: "font-family: sans-serif; font-style: italic"}
+    Welcome to ToDo!
+  %h4{style: "font-weight: normal"}
+    Click on the link to activate your account and finish signup process:
+  .link
+    %a{href: edit_activation_url(@user.activation_token, email: @user.email),
+      style: "background-color: #FF8200; padding: 10px; border: 1px solid #FF4F00; color: white; text-decoration: none;"}
+      Activate!
