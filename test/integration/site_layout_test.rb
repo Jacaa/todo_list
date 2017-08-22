@@ -6,13 +6,20 @@ class SiteLayoutTest < ActionDispatch::IntegrationTest
     get root_path
     assert_template 'static_pages/index'
     assert_select "title", "ToDo"
-    assert_select "a[href=?]", signup_path
+    assert_select "a[href=?]", "#signupModal"
     assert_select "a[href=?]", root_path
-    assert_select "input[type=email]",    count: 1
-    assert_select "input[type=password]", count: 1
-    assert_select "input[type=checkbox]", count: 1
-    assert_select "input[type=submit]",   count: 1
+    assert_select "input[id=session_email]",       count: 1
+    assert_select "input[id=session_password]",    count: 1
+    assert_select "input[id=session_remember_me]", count: 1
+    assert_select "input[value='Login']",          count: 1
     assert_select "a[href=?]", new_password_reset_path
+    # Signup form modal
+    assert_select ".modal-dialog"
+    assert_select "input[id=user_email]",                    count: 1
+    assert_select "input[id=user_name]",                     count: 1
+    assert_select "input[id=user_password]",                 count: 1
+    assert_select "input[id=user_password_confirmation]",    count: 1
+    assert_select "input[value='Create my account']",        count: 1
   end
 
   test "index page layout when user is logged in" do
@@ -22,8 +29,8 @@ class SiteLayoutTest < ActionDispatch::IntegrationTest
     assert_template 'static_pages/index'
     assert_select 'a[href=?]', edit_user_path(user)
     assert_select 'a[href=?]', logout_path
-    assert_select 'textarea'
-    assert_select "input[type=submit]", count: 1
+    assert_select 'textarea[id=task_content]', count: 1
+    assert_select "input[value='Add']",        count: 1
   end
 
   test "index page layout when user is logged in and has todo tasks" do
@@ -53,21 +60,11 @@ class SiteLayoutTest < ActionDispatch::IntegrationTest
     end
   end
 
-  test "signup page layout" do
-    get signup_path
-    assert_template 'users/new'
-    assert_select "a[href=?]", root_path
-    assert_select "input[type=email]",    count: 1
-    assert_select "input[type=text]",     count: 1
-    assert_select "input[type=password]", count: 2
-    assert_select "input[type=submit]",   count: 1
-  end
-
   test "new password-reset page layout" do
     get new_password_reset_path
     assert_template 'password_resets/new'
-    assert_select "input[type=email]",  count: 1
-    assert_select "input[type=submit]", count: 1
+    assert_select "input[id=password_reset_email]",  count: 1
+    assert_select "input[value='Send email']",       count: 1
   end
 
   test "edit password-reset page layout" do

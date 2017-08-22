@@ -4,6 +4,7 @@ class PasswordResetsController < ApplicationController
   before_action :check_expiration, only: [:edit, :update]
 
   def new
+    @user = User.new
   end
 
   def create
@@ -14,8 +15,8 @@ class PasswordResetsController < ApplicationController
       flash[:info] = "Email sent with instructions."
       redirect_to root_url
     else
-      flash.now[:danger] = "Email not found."
-      render 'new'
+      flash[:danger] = "Email not found."
+      redirect_to new_password_reset_url
     end
   end
   

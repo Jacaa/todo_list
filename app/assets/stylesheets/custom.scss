@@ -144,7 +144,7 @@ footer {
   margin-top: 50px;
   width: 100%;
   padding-bottom: 100px;
-  background-image: url('welcome-background.jpg');
+  background-image: image-url('welcome-background.jpg');
   background-repeat: no-repeat;
   background-position: top;
   background-size: cover;
@@ -208,6 +208,19 @@ footer {
 }
 
 /* singup form */
+
+#signupModal {
+  .modal-content {
+    .modal-header {
+      text-align: center;
+      font-family: 'Pacifico', sans-serif;
+    }
+    .modal-body {
+      width: 70%;
+      margin: auto;
+    }
+  }
+}
 
 .forms {
   margin-top: 5%;
@@ -388,7 +401,7 @@ footer {
 
   .container#welcome {
     margin-top: 115px;
-    background-image: url('welcome-background-mobile.jpg');
+    background-image: image-url('welcome-background-mobile.jpg');
   }
 
   /* main page - logged in */

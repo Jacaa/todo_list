@@ -8,7 +8,7 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
 
   test "valid signup with account activation" do
     # Sign up with valid params
-    get signup_path
+    get root_path
     assert_difference 'User.count', 1 do
       post signup_path, params: { user: {name: "Jack",
                                          email: "jack@valid.com",
@@ -38,14 +38,13 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
   end
 
   test "invalid signup" do
-    get signup_path
+    get root_path
     assert_no_difference 'User.count' do
       post signup_path, params: { user: {name: "Jack",
                                          email: "jack@invalid",
                                          password: "password",
                                          password_confirmation: "pass"}}
     end
-    assert_template 'users/new'
-    assert_select "div#error-explanation"
+    assert_redirected_to root_path
   end
 end

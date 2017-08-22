@@ -7,11 +7,6 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     @user       = users(:jack)
   end
 
-  test "should get new" do
-    get signup_path
-    assert_response :success
-  end
-  
   # Edit action
   test "should get edit" do
     log_in_as @user

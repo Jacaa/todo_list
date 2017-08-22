@@ -1,0 +1,10 @@
+#signupModal.modal.fade{role: "dialog"}
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button.close{type: "button", "data-dismiss": "modal"} &times;
+        %h4.modal-title Sign up
+      .modal-body
+        = render 'users/new'
+      .modal-footer
+        %button.btn.orange-gradient-btn{type: "button", "data-dismiss": "modal"} Close

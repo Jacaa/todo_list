@@ -8,6 +8,8 @@ class StaticPagesController < ApplicationController
       @done_tasks = @user.tasks.done
       @done_count = @user.tasks.done.count
       @task  = @user.tasks.build
+    else
+      @user = User.new
     end
   end
 end
