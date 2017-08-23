@@ -10,7 +10,7 @@ class UsersController < ApplicationController
       flash[:info] = "Please check your email for ending signup process."
       redirect_to root_url
     else
-      redirect_to request.referrer || root_url
+       respond_to :js
     end
   end
 

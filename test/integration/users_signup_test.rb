@@ -13,7 +13,8 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
       post signup_path, params: { user: {name: "Jack",
                                          email: "jack@valid.com",
                                          password: "password",
-                                         password_confirmation: "password"}}
+                                         password_confirmation: "password"}},
+                                         xhr: true
     end
     # Check if email was delivered
     assert_equal 1, ActionMailer::Base.deliveries.size
@@ -43,8 +44,9 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
       post signup_path, params: { user: {name: "Jack",
                                          email: "jack@invalid",
                                          password: "password",
-                                         password_confirmation: "pass"}}
+                                         password_confirmation: "pass"}},
+                                         xhr: true
     end
-    assert_redirected_to root_path
+    assert_match "error-explanation", response.body
   end
 end

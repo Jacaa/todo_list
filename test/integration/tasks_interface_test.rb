@@ -13,17 +13,17 @@ class TasksInterfaceTest < ActionDispatch::IntegrationTest
     # Invalid submission
     content = ""
     assert_no_difference 'Task.count' do
-      post tasks_path, params: { task: { content: content } }
+      post tasks_path, params: { task: { content: content } }, xhr: true
     end
-    assert_redirected_to root_url
+    # assert_redirected_to root_url
     # Valid submission
     content = "Lorem ipsum"
     assert_no_match content, response.body
     assert_difference 'Task.count', 1 do
-      post tasks_path, params: { task: { content: content } }
+      post tasks_path, params: { task: { content: content } }, xhr: true
     end
-    assert_redirected_to root_url
-    follow_redirect!
+    # assert_redirected_to root_url
+    # follow_redirect!
     assert_match content, response.body
   end
 
@@ -34,10 +34,8 @@ class TasksInterfaceTest < ActionDispatch::IntegrationTest
     task = @user.tasks.first
     assert_match task.content, response.body
     assert_difference 'Task.count', -1 do
-      delete task_path(task)
+      delete task_path(task), xhr: true
     end
-    assert_redirected_to root_url
-    follow_redirect!
     assert_no_match task.content, response.body
   end
 
@@ -48,8 +46,7 @@ class TasksInterfaceTest < ActionDispatch::IntegrationTest
     task = tasks(:todo_task)
     assert_not task.done?
     # Change task's status to true - done
-    get change_task_path(task)
+    get change_task_path(task), xhr: true
     assert task.reload.done?
-    assert_redirected_to root_url
   end
 end

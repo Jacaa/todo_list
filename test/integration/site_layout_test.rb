@@ -14,7 +14,7 @@ class SiteLayoutTest < ActionDispatch::IntegrationTest
     assert_select "input[value='Login']",          count: 1
     assert_select "a[href=?]", new_password_reset_path
     # Signup form modal
-    assert_select ".modal-dialog"
+    assert_select "#signupModal"
     assert_select "input[id=user_email]",                    count: 1
     assert_select "input[id=user_name]",                     count: 1
     assert_select "input[id=user_password]",                 count: 1
@@ -47,7 +47,7 @@ class SiteLayoutTest < ActionDispatch::IntegrationTest
     user = users(:user_no_tasks)
     log_in_as(user)
     get root_path
-    assert_select 'h3.no-todo-tasks'
+    assert_select '#no-tasks'
   end
 
   test "index page layout when user is logged in and has done tasks" do

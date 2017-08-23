@@ -3,7 +3,7 @@
     .navbar-header
       = link_to 'ToDo', root_path, class: "navbar-brand"
     .navbar-form.navbar-left
-      = form_for @task do |f|
+      = form_for(@task, remote: true) do |f|
         = render 'shared/errors', object: f.object
         .form-group
           = f.text_area :content, placeholder: "Add new task...", class: "form-control"

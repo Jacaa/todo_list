@@ -1,0 +1,16 @@
+$("#task-<%= @task.id %>").fadeOut(500, function(){
+  $(this).remove();
+
+  if ("<%= @done_count %>" == "0") {
+    $("#done-tasks").fadeOut(500);
+  } else {
+    $("#done_count").text("<%= @done_count %>");
+  }
+  if ("<%= @todo_count %>" == "0") {
+    $("#todo-tasks").fadeOut(500, function() {
+      $("#no-tasks").fadeIn(500);
+    });
+  } else {
+    $("#todo_count").text("<%= @todo_count %>");
+  }
+});

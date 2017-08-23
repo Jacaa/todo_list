@@ -1,0 +1,28 @@
+$("#task-<%= @task.id %>").fadeOut(500, function(){
+  $(this).remove();
+  if ("<%= @todo_count %>" == "0") {
+    $("#todo-tasks").fadeOut(500, function() {
+      $("#no-tasks").fadeIn(500);
+    });
+  } else {
+    $("#no-tasks").fadeOut(500, function(){
+      $("#todo-tasks").fadeIn(500);
+    });
+  }
+
+  if ("<%= @done_count %>" == "0") {
+    $("#done-tasks").fadeOut(500);
+  } else {
+    $("#done-tasks").fadeIn(500);
+  }
+
+  if ("<%= @task.done? %>" == "true") {
+    $("#done-tasks ul.tasks").append("<%= j render @task %>");
+    $("#task-<%= @task.id %>").hide().fadeIn(500);
+  } else {
+    $("#todo-tasks ul.tasks").append("<%= j render @task %>");
+    $("#task-<%= @task.id %>").hide().fadeIn(500);
+  }
+  $("#done_count").text("<%= @done_count %>");
+  $("#todo_count").text("<%= @todo_count %>");
+});

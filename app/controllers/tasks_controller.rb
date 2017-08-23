@@ -4,18 +4,27 @@ class TasksController < ApplicationController
 
   def create
     @task = current_user.tasks.build(task_params)
-    @task.save
-    redirect_to root_url
+    puts @task.id
+    respond_to do |format|
+      if @task.save
+        count_tasks
+        format.js
+      else 
+        format.json { render json: @task.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   def destroy
     @task.destroy
-    redirect_to root_url
+    count_tasks
+    respond_to :js
   end
 
   def change
     @task.change_status
-    redirect_to root_url
+    count_tasks
+    respond_to :js
   end
 
   private
@@ -27,5 +36,11 @@ class TasksController < ApplicationController
     def correct_user
       @task = current_user.tasks.find_by(id: params[:id])
       redirect_to root_url if @task.nil?
+    end
+
+    def count_tasks
+      @user = current_user
+      @done_count = @user.tasks.done.count
+      @todo_count = @user.tasks.todo.count
     end
 end

@@ -15,10 +15,12 @@ $twitt-color:  #0078FF;
 $google-color: #FF1E00;
 $github-color: #24292E;
 
-$black-opacity: rgba(0,0,0,0.3);
-$white-opacity: rgba(255, 255, 255, 0.8);
+$black-opacity:  rgba(0,0,0,0.3);
+$white-opacity:  rgba(255, 255, 255, 0.8);
+$orange-opacity: rgba(255, 130, 0, 0.6);
 
 $black:        black;
+$almost-black: #333;
 $white:        white;
 
 /* fonts */
@@ -136,9 +138,18 @@ footer {
 
 /* forms - errors */
 
-#error-explanation ul {
-  list-style: none;
-  color: $red;
+#error-explanation {
+  ul {
+    list-style: none;
+    color: $red;
+   }
+}
+
+.form-control:focus {
+  border-color: $light-orange; 
+  outline: 0;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px $orange-opacity;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px $orange-opacity;
 }
 
 /* welcome page */
@@ -292,6 +303,9 @@ footer {
       }
       .timestamp span {
         font-size: 0.95em;
+        &:hover {
+          color: $almost-black;
+        }
       }
       .content {
         display: inline-block;
@@ -341,7 +355,7 @@ footer {
 
 /* media */
 
-@media only screen and (max-width: 480px) and (max-device-width: 480px) {
+@media only screen and (max-width: 480px), only screen and (max-device-width: 480px) {
   .navbar-form.navbar-left {
     padding: 0;
     margin-left: 5%;
@@ -356,7 +370,7 @@ footer {
   }
 }
 
-@media only screen and (max-width: 768px) and (max-device-width: 768px) {
+@media only screen and (max-width: 768px), only screen and (max-device-width: 768px) {
 
   /* navbar - non logged in */
 
@@ -439,7 +453,7 @@ footer {
   }
 }
 
-@media only screen and (min-width: 1600px) and (min-device-width: 1600px) {
+@media only screen and (min-width: 1600px), only screen and (min-device-width: 1600px) {
   .login-with-email {
     margin-bottom: 35%;
   }

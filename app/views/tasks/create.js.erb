@@ -1,0 +1,13 @@
+$("#task_content").val('');
+
+
+$("#no-tasks").fadeOut(500, function() {
+  $("#todo-tasks").show();
+
+  $("#todo-tasks ul.tasks").append("<%= j render @task %>");
+
+  $("#todo_count").text("<%= @todo_count %>");
+
+  $("#task-<%= @task.id %>").hide().fadeIn(500);
+});
+

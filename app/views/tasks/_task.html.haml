@@ -2,7 +2,7 @@
   - unless task.done?
     %li{id: "task-#{task.id}"}
       .done
-        %a{href: change_task_path(task)}
+        %a{href: change_task_path(task), data: { remote: "true" } }
           %span.glyphicon.glyphicon-ok
       .content
         = task.content
@@ -10,7 +10,7 @@
         .options
           %span.glyphicon.glyphicon-envelope
           %span.glyphicon.glyphicon-pencil
-          %a{href: task_path(task), data: { confirm: "You sure?", method: :delete} }
+          %a{href: task_path(task), data: { confirm: "You sure?", method: :delete, remote: "true" } }
             %span.glyphicon.glyphicon-remove
         .timestamp
           %span= task.created_at.strftime("%d %b %Y")
@@ -20,7 +20,8 @@
         = task.content
       .settings
         .options
-          %a{href: change_task_path(task)}
+          %a{href: change_task_path(task), data: { remote: "true" } }
             %span.glyphicon.glyphicon-repeat
-          %a{href: task_path(task), data: { confirm: "You sure?", method: :delete} }
+          %a{href: task_path(task), data: { confirm: "You sure?", method: :delete, remote: "true" } }
             %span.glyphicon.glyphicon-remove
+

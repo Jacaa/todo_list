@@ -4,21 +4,20 @@
     .row
       .col-xs-12.col-sm-10.col-sm-offset-1.col-md-8.col-md-offset-2
         .users-todo
-          - if has_todo_tasks?(@user)
+          #todo-tasks
             %h4
               Todo (
-              = @todo_count
+              %span#todo_count= @todo_count
               ) 
             %ul.tasks
               = render @todo_tasks
-          - else 
-            .text-center
-              %h3.no-todo-tasks You have nothing to do :)
+          #no-tasks.text-center
+            %h3.no-todo-tasks You have nothing to do :)
         .users-done
-          - if has_done_tasks?(@user)
+          #done-tasks
             %h4
               Done (
-              = @done_count
+              %span#done_count= @done_count
               ) 
             %ul.tasks
               = render @done_tasks
