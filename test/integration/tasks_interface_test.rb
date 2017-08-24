@@ -45,8 +45,27 @@ class TasksInterfaceTest < ActionDispatch::IntegrationTest
     assert_select 'span.glyphicon-ok'
     task = tasks(:todo_task)
     assert_not task.done?
-    # Change task's status to true - done
+    # Change task's status to true
     get change_task_path(task), xhr: true
     assert task.reload.done?
+  end
+
+  test "edit task" do
+    get root_path
+    assert_template 'static_pages/index'
+    assert_select 'span.glyphicon-pencil'
+    # Get edit task form
+    task = tasks(:todo_task)
+    get edit_task_path(task), xhr: true
+    old_content = task.content
+    assert_match old_content, response.body
+    # Update task
+    
+
+    # Check if it was changed in DB
+    new_content = 'new content'
+    patch task_path(task), params: { task: { content: new_content } }, xhr: true
+    assert_match new_content, response.body
+    assert_no_match old_content, response.body
   end
 end

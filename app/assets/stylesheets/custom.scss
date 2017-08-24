@@ -136,13 +136,31 @@ footer {
   margin: 1% 0;
 }
 
-/* forms - errors */
+/* forms */
 
 #error-explanation {
   ul {
     list-style: none;
     color: $red;
    }
+}
+
+/* edit task form */
+
+.edit_task {
+  textarea, textarea:focus {
+    resize: none;
+    border: 1px solid $light-grey;
+    border-radius: 0;
+    box-shadow: none;
+  }
+  span {
+    background-color: $white;
+    border-color: $light-grey;
+  }
+  input[type=submit] {
+    margin: 0;
+  }
 }
 
 .form-control:focus {
@@ -289,9 +307,7 @@ footer {
       }
       .options a, .done a {
         color: $dark-grey;
-        &:hover {
-          text-decoration: none;
-        }
+        text-decoration: none;
       }
       span {
         padding: 8px;

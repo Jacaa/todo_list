@@ -1,0 +1,5 @@
+$("#edit_task_<%= @task.id %>").fadeOut(500, function(){
+  $("#task-<%= @task.id %> .content").html("<%= @task.content %>");
+});
+
+

@@ -1,0 +1,6 @@
+= form_for(@task, remote: true) do |f|
+  = render 'shared/errors', object: f.object
+  .input-group
+    = f.text_area :content, class: "form-control"
+    %span.input-group-addon
+      = f.submit "Save", class: "btn orange-gradient-btn"

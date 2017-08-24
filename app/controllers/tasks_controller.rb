@@ -1,6 +1,6 @@
 class TasksController < ApplicationController
-  before_action :logged_in_user, only: [:create, :destroy, :change]
-  before_action :correct_user, only: [:destroy, :change]
+  before_action :logged_in_user
+  before_action :correct_user, only: [:destroy, :change, :edit, :update]
 
   def create
     @task = current_user.tasks.build(task_params)
@@ -25,6 +25,20 @@ class TasksController < ApplicationController
     @task.change_status
     count_tasks
     respond_to :js
+  end
+ 
+  def edit
+    respond_to :js
+  end
+
+  def update
+    respond_to do |format|
+      if @task.update_attributes(task_params)
+        format.js
+      else 
+        format.json { render json: @task.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   private

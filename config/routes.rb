@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   resources :users
   resources :activations,     only: [:edit]
   resources :password_resets, only: [:new, :create, :edit, :update]
-  resources :tasks,           only: [:create, :destroy]
+  resources :tasks,           only: [:create, :destroy, :edit, :update]
   resources :tasks,           only: [:change] do
     member do
       get :change

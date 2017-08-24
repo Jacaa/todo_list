@@ -9,7 +9,8 @@
       .settings
         .options
           %span.glyphicon.glyphicon-envelope
-          %span.glyphicon.glyphicon-pencil
+          %a{href: edit_task_path(task), data: { remote: "true" } }
+            %span.glyphicon.glyphicon-pencil
           %a{href: task_path(task), data: { confirm: "You sure?", method: :delete, remote: "true" } }
             %span.glyphicon.glyphicon-remove
         .timestamp

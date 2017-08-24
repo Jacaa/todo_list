@@ -28,7 +28,7 @@ class TasksControllerTest < ActionDispatch::IntegrationTest
     end
     assert_redirected_to root_url
   end
-
+  
   # Change action
   test "should redirect change when not logged in" do
     task = tasks(:two)
@@ -43,6 +43,38 @@ class TasksControllerTest < ActionDispatch::IntegrationTest
     task = tasks(:other)
     get change_task_path(task)
     assert_not task.reload.done?
+    assert_redirected_to root_url
+  end
+
+  # Edit action
+  test "should redirect edit when not logged in" do
+   task = tasks(:two)
+   get edit_task_path(task)
+   assert_redirected_to login_url
+  end
+
+  test "should redirect edit for wrong user" do
+    user = users(:jack)
+    log_in_as(user)
+    task = tasks(:other)
+    get edit_task_path(task)
+    assert_redirected_to root_url
+  end
+
+  # Update action
+  test "should redirect update when not logged in" do
+    task = tasks(:two)
+    patch task_path(task)
+    assert_match task.content, task.reload.content
+    assert_redirected_to login_url
+  end
+
+  test "should redirect update for wrong user" do
+    user = users(:jack)
+    log_in_as(user)
+    task = tasks(:other)
+    patch task_path(task)
+    assert_match task.content, task.reload.content
     assert_redirected_to root_url
   end
 end
