@@ -24,14 +24,14 @@ $almost-black: #333;
 $white:        white;
 
 /* fonts */
-
+$default-font: 'Karla', sans-serif;
 $fancy-font: 'Pacifico', sans-serif;
 
 /* universal */
 
 * {
   box-sizing: border-box;
-  font-family: 'Karla', sans-serif;
+  font-family: $default-font;
   letter-spacing: 0.02em;
 }
 
@@ -138,11 +138,25 @@ footer {
 
 /* forms */
 
-#error-explanation {
-  ul {
-    list-style: none;
+.has-error {
+  .form-control {
+    border-color: $red;
+  }
+  .help-block {
     color: $red;
-   }
+    font-family: $default-font;
+  }
+}
+
+.container#welcome span.help-block {
+  font-family: $default-font;
+}
+
+.form-control:focus {
+  border-color: $light-orange; 
+  outline: 0;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px $orange-opacity;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px $orange-opacity;
 }
 
 /* edit task form */
@@ -161,13 +175,6 @@ footer {
   input[type=submit] {
     margin: 0;
   }
-}
-
-.form-control:focus {
-  border-color: $light-orange; 
-  outline: 0;
-  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px $orange-opacity;
-  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px $orange-opacity;
 }
 
 /* welcome page */

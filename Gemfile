@@ -20,7 +20,7 @@ gem 'faker'
 gem 'bootstrap-sass'
 gem 'haml-rails'
 gem 'figaro'
-
+gem 'simple_form'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

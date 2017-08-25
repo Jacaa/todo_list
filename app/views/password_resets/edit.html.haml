@@ -2,15 +2,10 @@
 .container#welcome
   .row
     .col-xs-8.col-xs-offset-2.col-sm-4.col-sm-offset-6.col-lg-3.col-lg-offset-7.forms
-      = form_for(@user, url: password_reset_path(params[:id])) do |f|
-        = render 'shared/errors', object: f.object
-        .form-group
-          = f.password_field :password, placeholder: "Password", class: "form-control"
-        
-        .form-group
-          = f.password_field :password_confirmation, 
-                             placeholder: "Password confirmation", class: "form-control"
-      
+      = simple_form_for(@user, url: password_reset_path(params[:id])) do |f|
+        = f.input :password, placeholder: "Password", label: false
+        = f.input :password_confirmation, placeholder: "Password confirmation",
+                                          label: false
         = hidden_field_tag :email, @user.email
         .text-center
-          = f.submit "Change password", class: "btn orange-gradient-btn"
+          = f.button :submit, "Change password", class: "btn orange-gradient-btn"

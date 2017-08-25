@@ -1,6 +1,5 @@
-= form_for(@task, remote: true) do |f|
-  = render 'shared/errors', object: f.object
+= simple_form_for(@task, remote: true) do |f|
   .input-group
-    = f.text_area :content, class: "form-control"
+    = f.input :content, label: false
     %span.input-group-addon
-      = f.submit "Save", class: "btn orange-gradient-btn"
+      = f.button :submit, 'Save', class: "btn orange-gradient-btn"

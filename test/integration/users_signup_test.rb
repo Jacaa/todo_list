@@ -49,6 +49,6 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
                                          password_confirmation: "pass"}},
                                          xhr: true
     end
-    assert_match "error-explanation", response.body
+    assert_match "has-error", response.body
   end
 end

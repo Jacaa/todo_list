@@ -1,12 +1,7 @@
-#errors
-= form_for(@user, remote: true, html: {novalidate: 'novalidate'}) do |f|
-  .form-group
-    = f.email_field :email, placeholder: "Email", class: "form-control"
-    = @user.errors.messages[:email].first if @user.errors.messages[:email].present?
-  .form-group
-    = f.password_field :password, placeholder: "Password", class: "form-control"
-  .form-group
-    = f.password_field :password_confirmation, 
-                        placeholder: "Password confirmation", class: "form-control"
+= simple_form_for(@user, remote: true, html: {novalidate: 'novalidate'}) do |f|
+  = f.input :email, placeholder: 'user@domain.com', label: false
+  = f.input :password, placeholder: 'Password', label: false
+  = f.input :password_confirmation,
+            placeholder: 'Password confirmation', label: false
   .text-center
-    = f.submit "Create my account", class: "btn orange-gradient-btn"
+    = f.button :submit, 'Create my account', class: "btn orange-gradient-btn"

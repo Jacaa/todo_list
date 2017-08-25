@@ -42,10 +42,10 @@ class PasswordResetsTest < ActionDispatch::IntegrationTest
     assert_select "input[name=email][type=hidden][value=?]", user.email
     # Invalid password & confirmation
     change_password(user, "foobar", "barfoo")
-    assert_select 'div#error-explanation'
+    assert_select '.has-error'
     # Empty password
     change_password(user, "", "")
-    assert_select 'div#error-explanation'
+    assert_select '.has-error'
     # Valid password & confirmation
     change_password(user, "foobar", "foobar")
     assert user_is_logged_in?

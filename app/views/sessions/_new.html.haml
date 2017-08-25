@@ -3,15 +3,11 @@
   .google.oauth-icons
   .github.oauth-icons
 .login-with-email
-  = form_for :session, url: login_path do |f|
-    .form-group
-      = f.email_field :email, placeholder: "Email", class: "form-control"
-    .form-group
-      = f.password_field :password, placeholder: "Password", class: "form-control"
-    .form-group
-      = f.label :remember_me, "Remember me"
-      = f.check_box :remember_me
+  = simple_form_for(:session, url: login_path, defaults: {label: false}) do |f|
+    = f.input :email, placeholder: "Email"
+    = f.input :password, placeholder: "Password"
+    = f.input :remember_me, inline_label: "Remember me", as: :boolean
     .text-center
-      = f.submit "Login", class: "btn orange-gradient-btn", id: "login-btn"
+      = f.button :submit, "Login", class: "btn orange-gradient-btn", id: "login-btn"
     .text-center
       %small= link_to "Forgot password?", new_password_reset_path

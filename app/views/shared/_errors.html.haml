@@ -1,6 +1,0 @@
-- if object.errors.any?
-  #error-explanation
-    %ul
-      - object.errors.each do |attr, msg|
-        - if object.errors[attr].first == msg
-          %li= "#{attr.capitalize} #{msg}"

@@ -3,11 +3,7 @@
     .navbar-header
       = link_to 'ToDo', root_path, class: "navbar-brand"
     .navbar-form.navbar-left
-      = form_for(@task, remote: true) do |f|
-        = render 'shared/errors', object: f.object
-        .form-group
-          = f.text_area :content, placeholder: "Add new task...", class: "form-control"
-        = f.submit "Add", class: "btn orange-gradient-btn"
+      = render 'tasks/task_form'
     %ul.nav.navbar-nav.navbar-right
       %li.dropdown
         %a.dropdown-toggle{"data-toggle" => "dropdown", href: ""}

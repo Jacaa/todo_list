@@ -62,7 +62,7 @@ class SiteLayoutTest < ActionDispatch::IntegrationTest
     get new_password_reset_path
     assert_template 'password_resets/new'
     assert_select "input[id=password_reset_email]",  count: 1
-    assert_select "input[value='Send email']",       count: 1
+    assert_select "input[value='OK!']",       count: 1
   end
 
   test "edit password-reset page layout" do

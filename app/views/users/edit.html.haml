@@ -3,19 +3,14 @@
   .row
     = render 'shared/flash_message'
     .col-xs-8.col-xs-offset-2
-      = form_for @user do |f|
-        = render 'shared/errors', object: f.object
-        .form-group
-          = f.label :email
-          = f.email_field :email, class: "form-control"
-        .form-group
-          = f.label :password
-          = f.password_field :password, class: "form-control"
-        .form-group
-          = f.label :password_confirmation
-          = f.password_field :password_confirmation, class: "form-control"
+      = simple_form_for(@user) do |f|
+        = f.input :email, required: false
+        = f.input :password, required: false
+        = f.input :password_confirmation
         .text-center
-          = f.submit "Save changes", class: "btn orange-gradient-btn"
+          = f.button :submit, "Save changes", class: "btn orange-gradient-btn"
         .text-center
           = link_to "Delete profile", @user, method: :delete, 
           data: { confirm: "You sure?"}, class: "btn red-border-btn"
+
+

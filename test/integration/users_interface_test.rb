@@ -14,7 +14,7 @@ class UsersInterfaceTest < ActionDispatch::IntegrationTest
     email = "invalid"
     patch user_path(@user), params: { user: { email: email}}
     assert_template 'users/edit'
-    assert_select 'div#error-explanation'
+    assert_select '.has-error'
     # Successfull edit
     email = "valid@email.com"
     patch user_path(@user), params: { user: { email: email}}
