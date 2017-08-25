@@ -16,7 +16,6 @@ class SiteLayoutTest < ActionDispatch::IntegrationTest
     # Signup form modal
     assert_select "#signupModal"
     assert_select "input[id=user_email]",                    count: 1
-    assert_select "input[id=user_name]",                     count: 1
     assert_select "input[id=user_password]",                 count: 1
     assert_select "input[id=user_password_confirmation]",    count: 1
     assert_select "input[value='Create my account']",        count: 1

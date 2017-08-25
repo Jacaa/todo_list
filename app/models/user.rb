@@ -3,7 +3,6 @@ class User < ApplicationRecord
   before_create { generate_token(:remember_token)}
   before_create { generate_token(:activation_token)}
 
-  validates :name, presence: true, length: { maximum: 255 }
   
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: true, length: { maximum: 255 }, 

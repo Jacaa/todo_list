@@ -1,7 +1,6 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 jack:
-  name: Jack
   email: jack@example.com
   password_digest: <%= User.digest('password') %>
   remember_token: <%= User.new_token %>
@@ -9,7 +8,6 @@ jack:
   activated: true
 
 other:
-  name: Other
   email: other@example.com
   password_digest: <%= User.digest('password') %>
   remember_token: <%= User.new_token %>
@@ -17,7 +15,6 @@ other:
   activated: true
 
 user_no_tasks:
-  name: John
   email: john@example.com
   password_digest: <%= User.digest('password') %>
   remember_token: <%= User.new_token %>

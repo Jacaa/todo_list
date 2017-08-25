@@ -11,17 +11,14 @@ class UsersInterfaceTest < ActionDispatch::IntegrationTest
     get edit_user_path(@user)
     assert_template 'users/edit'
     # Unsuccesfull edit
-    name  = ""
     email = "invalid"
-    patch user_path(@user), params: { user: { name:  name, email: email}}
+    patch user_path(@user), params: { user: { email: email}}
     assert_template 'users/edit'
     assert_select 'div#error-explanation'
     # Successfull edit
-    name  = "New Name"
     email = "valid@email.com"
-    patch user_path(@user), params: { user: { name:  name, email: email}}
+    patch user_path(@user), params: { user: { email: email}}
     @user.reload
-    assert_equal name,  @user.name
     assert_equal email, @user.email
     assert_not flash.empty?
     assert_redirected_to root_url
