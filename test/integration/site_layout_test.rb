@@ -44,8 +44,7 @@ class SiteLayoutTest < ActionDispatch::IntegrationTest
   end
 
   test "index page layout when user is logged in and hasn't todo tasks" do
-    user = users(:user_no_tasks)
-    log_in_as(user)
+    log_in_as(users(:user_no_tasks))
     get root_path
     assert_select '#no-tasks'
   end

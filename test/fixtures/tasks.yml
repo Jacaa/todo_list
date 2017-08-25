@@ -27,6 +27,7 @@ todo_task:
 other:
   content: Third
   created_at: <%= 10.minutes.ago %>
+  done: false
   user: other
 
 most_recent:

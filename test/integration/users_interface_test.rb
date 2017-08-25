@@ -23,10 +23,10 @@ class UsersInterfaceTest < ActionDispatch::IntegrationTest
     @user.reload
     assert_equal name,  @user.name
     assert_equal email, @user.email
+    assert_not flash.empty?
     assert_redirected_to root_url
     follow_redirect!
     assert_template 'static_pages/index'
-    assert_not flash.empty?
   end
 
   test "destroy user" do

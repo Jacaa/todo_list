@@ -26,9 +26,9 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
 
   test "login with invalid information" do
     log_in_as(@user, password: " ")
+    assert_not flash.empty?
     assert_redirected_to root_url
     follow_redirect!
-    assert_not flash.empty?
     assert_template 'static_pages/index'
   end
 
