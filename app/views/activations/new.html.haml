@@ -1,0 +1,13 @@
+= render 'shared/nav_non_logged_in'
+
+.container#welcome
+  .row
+    = render 'shared/flash_message'
+    .col-xs-8.col-xs-offset-2.col-sm-4.col-sm-offset-6.col-lg-3.col-lg-offset-7.forms
+      = simple_form_for(:activation, url: activations_path) do |f|
+        = f.input :email, placeholder: "Write your email", label: false
+        .text-center
+          = f.button :submit, "Send email!", class: "btn orange-gradient-btn"
+
+/ Modal
+= render 'shared/signup_modal'

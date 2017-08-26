@@ -51,4 +51,20 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
     end
     assert_match "has-error", response.body
   end
+
+  test "send again activation email" do
+    get new_activation_path
+    assert_template 'activations/new'
+    # Send wrong email
+    wrong_email = 'notfound@email.com'
+    post activations_path, params: { activation: { email: wrong_email } }
+    assert_not flash.empty?
+    assert_redirected_to new_activation_path
+    # Send existing email
+    existing_email = users(:jack).email
+    post activations_path, params: { activation: { email: existing_email } }
+    assert_equal 1, ActionMailer::Base.deliveries.size
+    assert_not flash.empty?
+    assert_redirected_to root_url
+  end
 end

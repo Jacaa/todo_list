@@ -27,3 +27,8 @@ $(document).on 'turbolinks:load', ->
     $("#done-tasks").hide()
   else
     $("#done-tasks").show()
+
+  # Button for sending activations email
+  if $('.alert-info').length or $('.alert-warning').length
+    $('#activation-btn').show()
+  

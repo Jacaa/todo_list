@@ -6,6 +6,7 @@ class SiteLayoutTest < ActionDispatch::IntegrationTest
     get root_path
     assert_template 'static_pages/index'
     assert_select "title", "ToDo"
+    assert_select "a[href=?]", new_activation_path
     assert_select "a[href=?]", "#signupModal"
     assert_select "a[href=?]", root_path
     assert_select "input[id=session_email]",       count: 1
@@ -73,5 +74,12 @@ class SiteLayoutTest < ActionDispatch::IntegrationTest
     assert_template 'password_resets/edit'
     assert_select "input[type=password]", count: 2
     assert_select "input[type=submit]",   count: 1
+  end
+
+  test "new activation link page layout" do
+    get new_activation_path
+    assert_template 'activations/new'
+    assert_select "input[id=activation_email]", count: 1
+    assert_select "input[value='Send email!']", count: 1
   end
 end

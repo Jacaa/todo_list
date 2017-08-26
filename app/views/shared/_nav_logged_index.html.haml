@@ -6,7 +6,7 @@
       = render 'tasks/task_form'
     %ul.nav.navbar-nav.navbar-right
       %li.dropdown
-        %a.dropdown-toggle{"data-toggle" => "dropdown", href: ""}
+        %a.dropdown-toggle{"data-toggle" => "dropdown", href: "", title: "Settings"}
           %span.glyphicon.glyphicon-option-vertical
         %ul.dropdown-menu
           %li
@@ -15,7 +15,7 @@
           %li
             = link_to "Logout", logout_path, method: "delete"
       %li.mobile-settings
-        %a{href: edit_user_path(@user) }
+        %a{href: edit_user_path(@user), title: "Profile" }
           %span.glyphicon.glyphicon-wrench
-        %a{href: logout_path, "data-method": :delete }
+        %a{href: logout_path, "data-method": :delete, title: "Logout" }
           %span.glyphicon.glyphicon-off

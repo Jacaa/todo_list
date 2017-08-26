@@ -191,6 +191,9 @@ footer {
   h2, span {
     font-family: $fancy-font;
   }
+  #activation-btn {
+    display: none;
+  }
 }
 
 .container#about {
@@ -381,7 +384,9 @@ footer {
 
 /* media */
 
-@media only screen and (max-width: 480px), only screen and (max-device-width: 480px) {
+@media only screen and (max-width: 480px), 
+       only screen and (max-device-width: 480px),
+       only screen and (orientation: portrait) {
   .navbar-form.navbar-left {
     padding: 0;
     margin-left: 5%;
@@ -396,7 +401,9 @@ footer {
   }
 }
 
-@media only screen and (max-width: 767px), only screen and (max-device-width: 767px) {
+@media only screen and (max-width: 767px), 
+       only screen and (max-device-width: 767px),
+       only screen and (orientation: portrait) {
 
   /* navbar - non logged in */
 

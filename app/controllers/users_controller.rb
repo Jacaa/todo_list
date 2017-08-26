@@ -18,9 +18,18 @@ class UsersController < ApplicationController
   end
 
   def update
+    old_email = @user.email
     if @user.update_attributes(user_params)
-      flash[:success] = "Profile updated!"
-      redirect_to root_url
+      unless old_email == user_params[:email]
+        log_out
+        @user.update_attribute(:activated, false)
+        @user.send_activation_email
+        flash[:info] = "Please check your email for activation link."
+        redirect_to root_url
+      else
+        flash[:success] = "Profile updated!"
+        redirect_to root_url
+      end
     else
       render 'edit'
     end
