@@ -6,6 +6,14 @@ jack:
   remember_token: <%= User.new_token %>
   activation_token: <%= User.new_token %>
   activated: true
+  
+jack_omniauth:
+  email: jack@omniauth.com
+  password_digest: <%= User.digest('password') %>
+  remember_token: <%= User.new_token %>
+  activation_token: <%= User.new_token %>
+  activated: true
+  uid: 123321
 
 other:
   email: other@example.com
@@ -20,3 +28,4 @@ user_no_tasks:
   remember_token: <%= User.new_token %>
   activation_token: <%= User.new_token %>
   activated: true
+

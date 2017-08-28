@@ -4,10 +4,16 @@ class SessionsHelperTest < ActionView::TestCase
 
   def setup
     @user = users(:jack)
+    @omniauth_user = users(:jack_omniauth)
+  end
+  
+  test "current_user returns right user when the session has user id" do
+    log_in @user
+    assert_not_nil current_user
   end
 
-  test "current_user returns right user when the session is not nil" do
-    log_in @user
+  test "current_user returns right user when the session has user uid" do
+    omniauth_log_in @omniauth_user
     assert_not_nil current_user
   end
 

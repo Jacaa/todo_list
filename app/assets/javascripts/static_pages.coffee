@@ -32,3 +32,5 @@ $(document).on 'turbolinks:load', ->
   if $('.alert-info').length or $('.alert-warning').length
     $('#activation-btn').show()
   
+  $('.edit_user #user_email').click ->
+    alert("It is needed to activate your account again after changing email address!")

@@ -19,6 +19,14 @@ class SessionsController < ApplicationController
     end
   end
 
+  def create_omniauth
+    auth = request.env['omniauth.auth']
+    session[:omniauth] = auth.except('extra')
+    user = User.sign_in_from_omniauth(auth)
+    omniauth_log_in user
+    redirect_to root_url
+  end
+
   def destroy
     log_out
     redirect_to root_url

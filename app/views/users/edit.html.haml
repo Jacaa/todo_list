@@ -3,14 +3,26 @@
   .row
     = render 'shared/flash_message'
     .col-xs-8.col-xs-offset-2
-      = simple_form_for(@user) do |f|
-        = f.input :email, required: false
-        = f.input :password, required: false
-        = f.input :password_confirmation
-        .text-center
-          = f.button :submit, "Save changes", class: "btn orange-gradient-btn"
-        .text-center
-          = link_to "Delete profile", @user, method: :delete, 
-          data: { confirm: "You sure?"}, class: "btn red-border-btn"
-
+      - unless @user.provider?
+        = simple_form_for(@user) do |f|
+          = f.input :email, required: false
+          = f.input :password, required: false
+          = f.input :password_confirmation
+          .text-center
+            = f.button :submit, "Save changes", class: "btn orange-gradient-btn"
+          .text-center
+            = link_to "Delete profile", @user, method: :delete, 
+            data: { confirm: "You sure?"}, class: "btn red-border-btn"
+      - else
+        %h3 
+          Logged in with: 
+          = @auth_info['provider'].upcase
+        .user-info
+          %p 
+            Name:
+            = @auth_info['info']['name']
+          %p 
+            Email:
+            = @auth_info['info']['email']
+          = image_tag(@auth_info['info']['image'], width: '50', height: '50')
 

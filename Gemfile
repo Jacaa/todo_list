@@ -21,6 +21,7 @@ gem 'bootstrap-sass'
 gem 'haml-rails'
 gem 'figaro'
 gem 'simple_form'
+gem 'omniauth-github'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

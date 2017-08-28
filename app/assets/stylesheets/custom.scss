@@ -214,9 +214,25 @@ footer {
   border-bottom: 2px solid $dark-grey;
   .oauth-icons {
     display: inline-block;
+    position: relative;
     width: 20%;
     padding-bottom: 20%;
     margin: 0 7px;
+  }
+  p {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    a {
+      color: $white;
+      text-decoration: none;
+      &:hover {
+        color: $light-orange;
+      }
+    }
   }
   .twitter {
     background-color: $twitt-color;

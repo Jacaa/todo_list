@@ -8,7 +8,15 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
     assert_template 'static_pages/index'
   end
 
-  test "valid signup with account activation" do
+  test "signup with account activation" do
+    # Signup with invalid params
+    assert_no_difference 'User.count' do
+      post signup_path, params: { user: {email: "jack@invalid",
+                                         password: "password",
+                                         password_confirmation: "password"}},
+                                         xhr: true
+    end
+    assert_match "has-error", response.body
     # Sign up with valid params
     assert_difference 'User.count', 1 do
       post signup_path, params: { user: {email: "jack@valid.com",
@@ -42,16 +50,25 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
     assert user_is_logged_in?
   end
 
-  test "invalid signup" do
-    assert_no_difference 'User.count' do
-      post signup_path, params: { user: {email: "jack@invalid",
-                                         password: "password",
-                                         password_confirmation: "pass"}},
-                                         xhr: true
+  test "signup using github followed by login using github" do
+    # Signup using github
+    assert_difference 'User.count', 1 do
+      get '/auth/github/callback'
     end
-    assert_match "has-error", response.body
+    assert_not_empty session[:omniauth]
+    assert_redirected_to root_url
+    follow_redirect!
+    assert_template 'static_pages/index'
+    assert user_is_logged_in?
+    # Logout
+    delete logout_path
+    # Login using github
+    assert_no_difference 'User.count' do
+      get '/auth/github/callback'
+    end
+    assert user_is_logged_in?
   end
-
+  
   test "send again activation email" do
     get new_activation_path
     assert_template 'activations/new'

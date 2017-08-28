@@ -49,6 +49,7 @@ class UsersController < ApplicationController
 
     def get_user
       @user = User.find(params[:id])
+      @auth_info = session[:omniauth] if session[:omniauth]
     end
 
     def correct_user

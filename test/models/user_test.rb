@@ -64,6 +64,12 @@ class UserTest < ActiveSupport::TestCase
     @user.password = @user.password_confirmation = "12345"
     assert_not @user.valid?
   end
+
+  test "password should match password confirmation" do
+    @user.password = "123456"
+    @user.password_confirmation = "654321"
+    assert_not @user.valid?
+  end
   
   # Tokens
   test "remember token should be generated" do

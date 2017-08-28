@@ -3,6 +3,17 @@ require 'rails/test_help'
 require "minitest/reporters"
 Minitest::Reporters.use!
 
+OmniAuth.config.test_mode = true
+omniauth_hash = { 'provider' => 'github',
+                  'uid' => '12345',
+                  'info' => {
+                      'name' => 'jack',
+                      'email' => 'jack@github.com'
+                  }
+                }
+
+OmniAuth.config.add_mock(:github, omniauth_hash)
+
 class ActiveSupport::TestCase
   # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
   fixtures :all

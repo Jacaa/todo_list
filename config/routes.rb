@@ -11,6 +11,9 @@ Rails.application.routes.draw do
   get     '/signup', to: 'users#new'
   post    '/signup', to: 'users#create'
   
+  # OmniAuth
+  get     '/auth/:provider/callback', to: 'sessions#create_omniauth'
+  
   resources :users
   resources :activations,     only: [:new, :create, :edit]
   resources :password_resets, only: [:new, :create, :edit, :update]

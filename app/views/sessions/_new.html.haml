@@ -2,6 +2,7 @@
   .twitter.oauth-icons
   .google.oauth-icons
   .github.oauth-icons
+    %p= link_to "GITHUB", '/auth/github' 
 .login-with-email
   = simple_form_for(:session, url: login_path, defaults: {label: false}) do |f|
     = f.input :email, placeholder: "Email"
