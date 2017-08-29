@@ -2,27 +2,29 @@
 .container#main-page
   .row
     = render 'shared/flash_message'
-    .col-xs-8.col-xs-offset-2
-      - unless @user.provider?
+    - unless @user.provider?
+      .profile-edit
         = simple_form_for(@user) do |f|
           = f.input :email, required: false
           = f.input :password, required: false
           = f.input :password_confirmation
           .text-center
             = f.button :submit, "Save changes", class: "btn orange-gradient-btn"
-          .text-center
-            = link_to "Delete profile", @user, method: :delete, 
-            data: { confirm: "You sure?"}, class: "btn red-border-btn"
-      - else
+    - else
+      .user-info
+        = image_tag(@auth_info['info']['image'], class: 'img-circle')
         %h3 
           Logged in with: 
           = @auth_info['provider'].upcase
-        .user-info
-          %p 
-            Name:
-            = @auth_info['info']['name']
-          %p 
-            Email:
-            = @auth_info['info']['email']
-          = image_tag(@auth_info['info']['image'], width: '50', height: '50')
+        %h4 
+          Name:
+          = @auth_info['info']['name']
+        %h4 
+          Email:
+          = @auth_info['info']['email']
+    .col-xs-8.col-xs-offset-2
+      .text-center
+        = link_to "Delete profile", @user, method: :delete, 
+        data: { confirm: "You sure?"}, class: "btn red-border-btn"
+          
 

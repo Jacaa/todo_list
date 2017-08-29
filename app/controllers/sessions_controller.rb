@@ -23,6 +23,10 @@ class SessionsController < ApplicationController
     auth = request.env['omniauth.auth']
     session[:omniauth] = auth.except('extra')
     user = User.sign_in_from_omniauth(auth)
+    unless user
+      user = User.create_user(auth)
+      user.send_welcome_email
+    end
     omniauth_log_in user
     redirect_to root_url
   end

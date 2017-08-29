@@ -6,7 +6,9 @@ $(document).on 'turbolinks:load', ->
 
   # Clear errors and inputs after closing signup form
   $("#signupModal").on "hidden.bs.modal", ->
-    $("#errors").html('')
+    $('.form-group').each ->
+      $(this).removeClass('has-error')
+      $(this).find('span').hide()
     $("#user_email").val('')
     $("#user_name").val('')
     $("#user_password").val('')

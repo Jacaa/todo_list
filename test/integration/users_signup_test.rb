@@ -55,6 +55,7 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
     assert_difference 'User.count', 1 do
       get '/auth/github/callback'
     end
+    assert_equal 1, ActionMailer::Base.deliveries.size
     assert_not_empty session[:omniauth]
     assert_redirected_to root_url
     follow_redirect!
@@ -66,6 +67,7 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
     assert_no_difference 'User.count' do
       get '/auth/github/callback'
     end
+    assert_equal 1, ActionMailer::Base.deliveries.size
     assert user_is_logged_in?
   end
   

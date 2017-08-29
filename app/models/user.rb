@@ -27,7 +27,7 @@ class User < ApplicationRecord
   end
 
   def self.sign_in_from_omniauth(auth)
-    find_by(provider: auth["provider"], uid: auth["uid"]) || create_user(auth)
+    find_by(provider: auth["provider"], uid: auth["uid"])
   end
 
   def self.create_user(auth)
@@ -58,6 +58,10 @@ class User < ApplicationRecord
 
   def send_password_reset_email
     UserMailer.password_reset(self).deliver_now
+  end
+
+  def send_welcome_email
+    UserMailer.welcome(self).deliver_now
   end
 
   private

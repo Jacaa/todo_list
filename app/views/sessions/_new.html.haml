@@ -1,8 +1,19 @@
 .login-with-apps
+  %h4 Login with:
   .twitter.oauth-icons
+    .fa.fa-twitter
+    .overlay
+      .text= link_to "TWITTER", '/'
   .google.oauth-icons
+    .fa.fa-google-plus
+    .overlay
+      .text= link_to "GOOGLE", '/'
   .github.oauth-icons
-    %p= link_to "GITHUB", '/auth/github' 
+    .fa.fa-github
+    .overlay
+      .text= link_to "GITHUB", '/auth/github'
+  .inside-lines
+    %h4 or
 .login-with-email
   = simple_form_for(:session, url: login_path, defaults: {label: false}) do |f|
     = f.input :email, placeholder: "Email"

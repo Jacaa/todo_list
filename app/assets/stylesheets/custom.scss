@@ -11,7 +11,7 @@ $red:          #FF1100;
 $light-grey:   #EEE;
 $medium-grey:  #AAA;
 $dark-grey:    #4D4D4D;
-$twitt-color:  #0078FF;
+$twitter-color:#0078FF;
 $google-color: #FF1E00;
 $github-color: #24292E;
 
@@ -24,6 +24,7 @@ $almost-black: #333;
 $white:        white;
 
 /* fonts */
+
 $default-font: 'Karla', sans-serif;
 $fancy-font: 'Pacifico', sans-serif;
 
@@ -35,27 +36,41 @@ $fancy-font: 'Pacifico', sans-serif;
   letter-spacing: 0.02em;
 }
 
+.alert {
+  text-align: center;
+}
+
+footer {
+  margin: 1% 0;
+}
+
+
+/* buttons */
+
 .btn {
-  color: $light-grey;
+  color: $white;
+  &:hover, &:focus {
+    color: $white;
+    font-weight: bold;
+  }
 }
 
 .orange-gradient-btn {
   margin-bottom: 10px;
   background-image: -webkit-linear-gradient($light-orange, $dark-orange);
   border: none;
+  &:hover {
+    background-image: -webkit-linear-gradient($dark-orange, $light-orange);
+  }
 }
 
 .red-border-btn {
   margin-top: 5%;
   border: 1px solid $red;
-}
-
-a.red-border-btn {
   color: $red;
-}
-
-.alert {
-  text-align: center;
+  &:hover {
+    background-color: $red;
+  }
 }
 
 /* navbar */
@@ -130,12 +145,6 @@ nav {
   }
 }
 
-/* footer */
-
-footer {
-  margin: 1% 0;
-}
-
 /* forms */
 
 .has-error {
@@ -197,90 +206,155 @@ footer {
 }
 
 .container#about {
-  height: 500px;
   h2 {
     font-family: $fancy-font;
   }
 }
+.profile-edit {
+  width: 300px;
+  margin: auto;
+}
+.user-info {
+  width: 400px;
+  margin: auto;
+}
 
 /* log in form */
+.login-form {
+  width: 350px;
+  height: 390px;
+  margin: auto;
+  margin-top: 40px;
+  box-shadow: 2px 2px 5px $black-opacity;
+  background-color: $white-opacity;
+  .login-with-apps {
+    margin: auto;
+    text-align: center;
+    padding-top: 15px;
+    width: 80%;
+    .oauth-icons {
+      display: inline-block;
+      position: relative;
+      width: 60px;
+      padding-bottom: 60px;
+      border-radius: 5%;
+      &:hover .overlay {
+        bottom: 0;
+        height: 100%;
+      }
+      .overlay {
+        position: absolute;
+        bottom: 100%;
+        left: 0;
+        right: 0;
+        background-color: inherit;
+        overflow: hidden;
+        width: 100%;
+        height:0;
+        transition: .2s ease;
+        border-radius: 5%;
+      }
+      .text {
+        white-space: nowrap; 
+        font-size: 1em;
+        position: absolute;
+        overflow: hidden;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        a {
+          text-decoration: none;
+          color: $white;
+          font-weight: bold;
+        }
+      }
+      .fa {
+        color: $white;
+        font-size: 2em;
+        margin: 0;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-right: -50%;
+        transform: translate(-50%, -50%);
+      }
 
-.login-with-apps {
-  width: 100%;
-  text-align: center;
-  margin-top: 70px;
-  padding-bottom: 15px;
-  margin-bottom: 15px;
-  border-bottom: 2px solid $dark-grey;
-  .oauth-icons {
-    display: inline-block;
-    position: relative;
-    width: 20%;
-    padding-bottom: 20%;
-    margin: 0 7px;
-  }
-  p {
-    margin: 0;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    margin-right: -50%;
-    transform: translate(-50%, -50%);
-    a {
-      color: $white;
-      text-decoration: none;
-      &:hover {
-        color: $light-orange;
+    }
+    .twitter {
+      background-color: $twitter-color;
+    }
+    .google {
+      background-color: $google-color;
+      margin: 0 45px;
+    }
+    .github {
+      background-color: $github-color;
+    }
+    .inside-lines {
+      h4 {
+          overflow: hidden;
+          text-align: center;
+      }
+      h4:before,
+      h4:after {
+          background-color: $almost-black;
+          content: "";
+          display: inline-block;
+          height: 1px;
+          position: relative;
+          vertical-align: middle;
+          width: 50%;
+      }
+      h4:before {
+          right: 0.5em;
+          margin-left: -50%;
+      }
+      h4:after {
+          left: 0.5em;
+          margin-right: -50%;
       }
     }
   }
-  .twitter {
-    background-color: $twitt-color;
-  }
-  .google {
-    background-color: $google-color;
-  }
-  .github {
-    background-color: $github-color;
-  }
-}
-
-.login-with-email {
-  clear: left;
-  margin-bottom: 50px;
-  .form-group label {
-    font-size: 1.1em;
-    font-weight: 400;
-    margin-right: 2%;
-  }
-  a {
-    font-size: 1.1em;
-    color: $black;
-  }
-  input[type=checkbox] {
-    transform: scale(1.25);
-  }
-  #login-btn {
-    width: 66%;
+  .login-with-email {
+    clear: left;
+    margin: 20px 30px;
+    .form-group label {
+      font-size: 1.1em;
+      font-weight: 400;
+      margin-right: 2%;
+    }
+    a {
+      font-size: 1.1em;
+      color: $black;
+    }
+    input[type=checkbox] {
+      transform: scale(1.25);
+    }
+    #login-btn {
+      width: 66%;
+    }
   }
 }
 
 /* singup form */
 
 #signupModal {
-  .modal-content {
-    .modal-header {
-      text-align: center;
-      color: $white;
-      font-family: $fancy-font;
-      background-image: -webkit-linear-gradient($light-orange, $dark-orange);
-      button {
-        color: $black;
+  .modal-dialog {
+    width: 350px;
+    margin: auto;
+    margin-top: 125px;
+    .modal-content {
+      .modal-header {
+        text-align: center;
+        color: $white;
+        font-family: $fancy-font;
+        background-image: -webkit-linear-gradient($light-orange, $dark-orange);
       }
-    }
-    .modal-body {
-      width: 70%;
-      margin: auto;
+      .modal-body {
+        width: 80%;
+        margin: 30px auto;
+      }
     }
   }
 }
@@ -299,6 +373,17 @@ footer {
 .container#main-page {
   margin-top: 50px;
   padding: 40px 0;
+  .user-info {
+    text-align: center;
+    padding: 5%;
+    font-style: italic;
+    color: $medium-grey;
+    border: 1px solid $light-grey;
+    img {
+      height: 100px;
+      width: 100px;
+    }
+  }
   .users-todo, .users-done {
     h4 {
       margin-left: 5%;
@@ -421,6 +506,12 @@ footer {
        only screen and (max-device-width: 767px),
        only screen and (orientation: portrait) {
 
+  /* modal signup */
+  #signupModal {
+    .modal-dialog {
+      margin-top: 200px;
+    }
+  }
   /* navbar - non logged in */
 
   .mobile-nav {
@@ -507,3 +598,4 @@ footer {
     margin-top: 5%;
   }
 }
+
