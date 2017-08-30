@@ -1,0 +1,16 @@
+%nav.navbar.navbar-static-top.gradient-bgnd
+  .container
+    .navbar-header
+      = link_to 'ToDo', root_path, class: "navbar-brand"
+      %button.navbar-toggle{type: "button", "data-toggle": "collapse", "data-target": "#mobileNavbar"}
+        %span.glyphicon.glyphicon-option-vertical
+    .collapse.navbar-collapse#mobileNavbar
+      %ul.nav.navbar-nav.navbar-right
+        %li
+          %a{href: edit_user_path(@user)}
+            %span.glyphicon.glyphicon-wrench
+            Settings
+        %li
+          %a{href: logout_path, "data-method": "delete"}
+            %span.glyphicon.glyphicon-off
+            Logout

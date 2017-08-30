@@ -36,3 +36,7 @@ $(document).on 'turbolinks:load', ->
   
   $('.edit_user #user_email').click ->
     alert("It is needed to activate your account again after changing email address!")
+  
+  # Show done task's timestamp
+  $('.users-done [id^="task-"]').click ->
+    $(this).find('.timestamp').toggle()

@@ -11,9 +11,9 @@ $red:          #FF1100;
 $light-grey:   #EEE;
 $medium-grey:  #AAA;
 $dark-grey:    #4D4D4D;
-$twitter-color:#0078FF;
-$google-color: #FF1E00;
-$github-color: #24292E;
+$twitter-color:#55ACEE;
+$google-color: #DD4B39;
+$github-color: #545454;
 
 $black-opacity:  rgba(0,0,0,0.3);
 $white-opacity:  rgba(255, 255, 255, 0.8);
@@ -36,6 +36,10 @@ $fancy-font: 'Pacifico', sans-serif;
   letter-spacing: 0.02em;
 }
 
+.fancy-font {
+  font-family: $fancy-font;
+}
+
 .alert {
   text-align: center;
 }
@@ -44,6 +48,19 @@ footer {
   margin: 1% 0;
 }
 
+.full-width {
+  margin-top: 50px;
+  width: 100%;
+  padding-bottom: 100px;
+  background-image: image-url('welcome-background.jpg');
+  background-repeat: no-repeat;
+  background-position: top;
+  background-size: cover;
+  background-attachment: fixed;
+  #activation-btn {
+    display: none;
+  }
+}
 
 /* buttons */
 
@@ -73,160 +90,107 @@ footer {
   }
 }
 
+/* forms */
+
+.form-group {
+  .form-control:focus {
+    border-color: $light-orange; 
+    outline: 0;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px $orange-opacity;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px $orange-opacity;
+  }
+  &.has-error {
+    .form-control {
+      border-color: $red;
+    }
+    .help-block {
+      color: $red;
+      font-family: $default-font;
+    }
+  }
+}
+
 /* navbar */
 
 nav {
-  background-color: $white-opacity;
+  box-shadow: 1px 1px 10px $medium-grey;
   &.navbar {
     padding: 0 25px;
+    text-align: center;
+    li {
+      display: inline-block;
+    }
     a {
-      color: $light-grey;
+      font-size: 1.2em;
+      color: $dark-grey;
+      &:hover {
+        background-color: inherit;
+        color: $light-orange;
+      }
       &.navbar-brand {
         font-family: $fancy-font;
         font-size: 2em;
         color: $dark-grey;
         &:hover {
-          color: $dark-orange;
+          color: $light-orange;
         }
       }
     }
-  }
-}
-
-/* navbar logged in */
-
-.container-fluid#logged-in-navbar {
-  padding: 0 20%;
-  border-bottom: 1px solid $light-orange;
-  .navbar-brand {
-    margin-top: 8px;
-  }
-  input[type=submit] {
-    margin-top: 6px;
-  }
-  span {
-    margin-top: 16px;
-    transform: scale(1.5);
-    &:hover {
-      color: $dark-orange;
-    }
-  }
-  .navbar-form.navbar-left {
-    width: 60%;
-    margin-left: 10%;
-    text-align: center;
-  }
-  .form-group {
-    width: 70%;
-    textarea {
-      width: 100%;
-    }
-  }
-  textarea {
-    resize: none;
-    width: 20%;
-  }
-  li {
-    &.dropdown {
-      display: block;
-      ul.dropdown-menu a:hover {
-        color: $dark-orange;
-      }
-      & a {
-        color: $dark-grey;
-        &:hover {
-          background-color: $white;
-        }
+    a.navbar-btn {
+      color: $white;
+      padding: 6px 15px;
+      font-size: 1em;
+      &:hover {
+        color: $white;
       }
     }
-    &.mobile-settings {
-      display: none;
-    }
   }
 }
 
-/* forms */
+/* login-form */
 
-.has-error {
-  .form-control {
-    border-color: $red;
-  }
-  .help-block {
-    color: $red;
-    font-family: $default-font;
-  }
+.form-white-box.increase-margin {
+  margin: 159px auto;
 }
 
-.container#welcome span.help-block {
-  font-family: $default-font;
-}
-
-.form-control:focus {
-  border-color: $light-orange; 
-  outline: 0;
-  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px $orange-opacity;
-  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px $orange-opacity;
-}
-
-/* edit task form */
-
-.edit_task {
-  textarea, textarea:focus {
-    resize: none;
-    border: 1px solid $light-grey;
-    border-radius: 0;
-    box-shadow: none;
-  }
-  span {
-    background-color: $white;
-    border-color: $light-grey;
-  }
-  input[type=submit] {
-    margin: 0;
-  }
-}
-
-/* welcome page */
-
-.container#welcome {
-  margin-top: 50px;
-  width: 100%;
-  padding-bottom: 100px;
-  background-image: image-url('welcome-background.jpg');
-  background-repeat: no-repeat;
-  background-position: top;
-  background-size: cover;
-  background-attachment: fixed;
-  h2, span {
-    font-family: $fancy-font;
-  }
-  #activation-btn {
-    display: none;
-  }
-}
-
-.container#about {
-  h2 {
-    font-family: $fancy-font;
-  }
-}
-.profile-edit {
-  width: 300px;
-  margin: auto;
-}
-.user-info {
-  width: 400px;
-  margin: auto;
-}
-
-/* log in form */
-.login-form {
+.form-white-box {
   width: 350px;
-  height: 390px;
   margin: auto;
   margin-top: 40px;
   box-shadow: 2px 2px 5px $black-opacity;
   background-color: $white-opacity;
+  .form-inside {
+    clear: left;
+    margin: 20px 30px;
+    padding: 20px;
+    h4 {
+      padding-bottom: 10px;
+    }
+  }
+  .inside-lines {
+    h4 {
+        overflow: hidden;
+        text-align: center;
+    }
+    h4:before,
+    h4:after {
+        background-color: $almost-black;
+        content: "";
+        display: inline-block;
+        height: 1px;
+        position: relative;
+        vertical-align: middle;
+        width: 50%;
+    }
+    h4:before {
+        right: 0.5em;
+        margin-left: -50%;
+    }
+    h4:after {
+        left: 0.5em;
+        margin-right: -50%;
+    }
+  }
   .login-with-apps {
     margin: auto;
     text-align: center;
@@ -291,34 +255,11 @@ nav {
     .github {
       background-color: $github-color;
     }
-    .inside-lines {
-      h4 {
-          overflow: hidden;
-          text-align: center;
-      }
-      h4:before,
-      h4:after {
-          background-color: $almost-black;
-          content: "";
-          display: inline-block;
-          height: 1px;
-          position: relative;
-          vertical-align: middle;
-          width: 50%;
-      }
-      h4:before {
-          right: 0.5em;
-          margin-left: -50%;
-      }
-      h4:after {
-          left: 0.5em;
-          margin-right: -50%;
-      }
-    }
   }
   .login-with-email {
     clear: left;
     margin: 20px 30px;
+    padding-bottom: 20px;
     .form-group label {
       font-size: 1.1em;
       font-weight: 400;
@@ -343,7 +284,7 @@ nav {
   .modal-dialog {
     width: 350px;
     margin: auto;
-    margin-top: 125px;
+    margin-top: 140px;
     .modal-content {
       .modal-header {
         text-align: center;
@@ -359,21 +300,79 @@ nav {
   }
 }
 
-.forms {
-  margin-top: 5%;
-  margin-bottom: 10%;
+/* new task form */
+
+#new_task {
+  margin: 20px 0;
+  textarea {
+    resize: none;
+    border: none;
+    box-shadow: none;
+    border-bottom: 1px solid $light-orange;
+    border-radius: 0;
+    line-height: 15px;
+    font-size: 1.2em;
+  }
+  .form-control:focus {
+    box-shadow: none;
+    border-bottom: 2px solid $light-orange;
+  }
+  .task_content {
+    width: 75%;
+    display: inline-block;
+    z-index: 999;
+    position: relative;
+  }
+  input[type=submit] {
+    position: relative;
+    right: 6px;
+    bottom: 23px;
+  }
 }
 
-.nav > li > a {
-  padding: 6px 15px;
+/* edit task form */
+
+.edit_task {
+  textarea {
+    resize: none;
+    border: none;
+    box-shadow: none;
+    border: 1px solid $light-orange;
+    border-radius: 0;
+    line-height: 15px;
+    font-size: 1.2em;
+  }
+  .form-control:focus {
+    box-shadow: none;
+  }
+  span {
+    background-color: $white;
+    border: none;
+  }
+  input[type=submit] {
+    margin: 0;
+    position: relative;
+    bottom: 6px;
+    right: 15px;
+    padding: 12px;
+  }
 }
+
 
 /* main page */
 
-.container#main-page {
-  margin-top: 50px;
-  padding: 40px 0;
+.user-feed {
+  padding: 0 15%;
+}
+
+.main-page {
+  .profile-edit {
+    width: 300px;
+    margin: auto;
+  }
   .user-info {
+    width: 380px;
+    margin: auto;
     text-align: center;
     padding: 5%;
     font-style: italic;
@@ -385,99 +384,91 @@ nav {
     }
   }
   .users-todo, .users-done {
-    h4 {
-      margin-left: 5%;
+    text-align: left;
+    a {
+      color: $medium-grey;
+      text-decoration: none;
     }
-    h3.no-todo-tasks {
+    .no-todo-tasks {
       margin: 0;
       padding: 5%;
       font-style: italic;
       color: $medium-grey;
-      border: 1px solid $light-grey;
     }
     ul.tasks {
       list-style: none;
+      padding: 0;
       cursor: default;
       li {
-        box-shadow: 1px 1px 1px $light-grey;
-        margin: 10px;
-        padding: 10px;
+        margin-bottom: 10px;
         &:hover {
           border: none;
-          box-shadow: 5px 5px 10px $black-opacity;
-          .done, .timestamp, .options {
-            display: inline-block;
-          }
-          .settings {
-            display: inline-block;
-          }
-          .content {
-            margin-left: 0;
+          box-shadow: 0px 0px 10px $light-orange;
+          a {
+            color: $light-orange;
+            &:hover {
+              color: $dark-orange;
+              text-decoration: none;
+            }
           }
         }
-      }
-      .options a, .done a {
-        color: $dark-grey;
-        text-decoration: none;
-      }
-      span {
-        padding: 8px;
-        font-size: 0.75em;
-        &:hover {
-          color: $dark-orange;
-          background-color: $white;
+        .task {
+          width: 100%;
         }
-      }
-      .timestamp span {
-        font-size: 0.95em;
-        &:hover {
-          color: $almost-black;
+        .done, .content, .settings {
+          display: inline-block;
+          vertical-align: middle; 
         }
-      }
-      .content {
-        display: inline-block;
-        width: 75%;
-        padding: 1.5%;
-        font-size: 1.2em;
-      }
-      .settings {
-        width: 20%;
-        display: none;
-        float: right;
-        .options, .timestamp {
-          float: right;
+        .done, .settings {
+          text-align: center; 
         }
-      }
-      .done {
-        float: left;
-        display: none;
+        .done { 
+          width: 5%; 
+        }
+        .content { 
+          width: 80%; 
+          padding: 15px 0;
+         }
+        .settings {
+          width: 10%;
+          span {
+            margin: 0 5%;
+          }
+        }
+        .timestamp {
+          text-align: right;
+          font-style: italic;
+          font-size: 0.9em;
+          color: $medium-grey;
+          border-top: 1px solid $light-grey;
+          padding-right: 7%;
+        }
       }
     }
   }
   .users-done {
-    margin-top: 5%;
+    margin: 5% 0;
     h4 {
       color: $medium-grey;
     }
     ul.tasks {
       li {
-        color: $medium-grey;
-        font-style: italic;
         &:hover {
-          box-shadow: 0px 0px 5px $dark-orange;
-        }
-        .done, .timestamp, .options {
-          display: block;
-        }
-        .settings {
-          display: inline-block;
-          .timestamp span:hover {
+          box-shadow: 0px 0px 10px $medium-grey;
+          a {
             color: $medium-grey;
+            &:hover {
+              color: $dark-grey;
+            }
           }
         }
-        .options a {
-          color: $medium-grey;
+      }
+      .content { 
+        margin-left: 5%;
+        color: $medium-grey;
         }
+      .timestamp {
+        display: none;
       }
     }
   }
@@ -485,117 +476,33 @@ nav {
 
 /* media */
 
-@media only screen and (max-width: 480px), 
-       only screen and (max-device-width: 480px),
-       only screen and (orientation: portrait) {
-  .navbar-form.navbar-left {
-    padding: 0;
-    margin-left: 5%;
-  }
-  .users-todo {
-    h4 {
-      margin-left: 5%;
-    }
-    ul.tasks li{
-      padding-bottom: 15px;
-    }
-  }
-}
+@media only screen and (max-width: 767px) {
 
-@media only screen and (max-width: 767px), 
-       only screen and (max-device-width: 767px),
-       only screen and (orientation: portrait) {
-
-  /* modal signup */
   #signupModal {
     .modal-dialog {
       margin-top: 200px;
     }
   }
-  /* navbar - non logged in */
 
-  .mobile-nav {
+  nav.mobile {
     text-align: center;
-    .btn {
-      width: 50%;
-      margin-left: 25%;
-      margin-right: 25%;
+    ul.navbar-nav {
+      margin-bottom: 0;
     }
-  }
-  .navbar-brand {
-    float: none;
-  }
-  .navbar-header {
-    margin-top: 15px;
-  }
-
-  /* navbar - logged in */
-  
-  .container-fluid#logged-in-navbar {
-    padding: 0;
-    div {
-      float: left;
+    .navbar-brand {
+      float: none;
     }
-    span {
-      margin-top: 0;
-    }
-    ul {
-      float: right;
-      li {
-        &.dropdown {
-          display: none;
-        }
-        &.mobile-settings {
-          display: block;
-          a {
-            color: $dark-grey;
-            font-size: 0.6em;
-            &:hover {
-              background-color: $white;
-            }
-          }
-        }
-      }
+    .navbar-header {
+      margin-top: 15px;
     }
   }
 
-  /* main page - non logged in */
-
-  .container#welcome {
-    margin-top: 115px;
+  .full-width {
+    margin-top: 100px;
     background-image: image-url('welcome-background-mobile.jpg');
   }
 
-  /* main page - logged in */
-
-  .container#main-page {
-    margin-top: 75px;
-    .users-todo, .users-done {
-      ul.tasks {
-        padding: 0;
-        .content {
-          max-width: 60%;
-        }
-        .settings {
-          width: 25%;
-          .options span {
-            padding: 4px;
-          }
-          .timestamp {
-            font-size: 1rem;
-          }
-        }
-      }
-    }
+  .user-feed {
+    padding: 0 2%;
   }
 }
-
-@media only screen and (min-width: 1600px), only screen and (min-device-width: 1600px) {
-  .login-with-email {
-    margin-bottom: 35%;
-  }
-  .welcome {
-    margin-top: 5%;
-  }
-}
-

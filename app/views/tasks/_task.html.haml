@@ -1,36 +1,35 @@
 - unless task.content.nil?
   - unless task.done?
     %li{id: "task-#{task.id}"}
-      .done
-        %a{href: change_task_path(task), title: "Change to done",
-           data: { remote: "true" } }
-          %span.glyphicon.glyphicon-ok
-      .content
-        = task.content
-      .settings
-        .options
-          %span.glyphicon.glyphicon-envelope
+      .task
+        .done
+          %a{href: change_task_path(task), title: "Change to done",
+            data: { remote: "true" } }
+            %span.glyphicon.glyphicon-ok
+        .content
+          = task.content
+        .settings
           %a{href: edit_task_path(task), title: "Edit task",
-             data: { remote: "true" } }
+              data: { remote: "true" } }
             %span.glyphicon.glyphicon-pencil
           %a{href: task_path(task), title: "Delete task",
-             data: { confirm: "You sure?", method: :delete, remote: "true" } }
+              data: { confirm: "You sure?", method: :delete, remote: "true" } }
             %span.glyphicon.glyphicon-remove
-        .timestamp
-          %span{ title: "#{task.updated_at.strftime('Hour: %H:%M')}"}
-            = task.created_at.strftime("%d %b %Y")
+      .timestamp
+        %span
+          = task.created_at.strftime("%d %b %Y Hour: %H:%M")
   - else
     %li{id: "task-#{task.id}"}
-      .content
-        = task.content
-      .settings
-        .options
+      .task
+        .content
+          = task.content
+        .settings
           %a{href: change_task_path(task), title: "Change to todo",
-             data: { remote: "true" } }
+              data: { remote: "true" } }
             %span.glyphicon.glyphicon-repeat
           %a{href: task_path(task), title: "Delete task",
-             data: { confirm: "You sure?", method: :delete, remote: "true" } }
+              data: { confirm: "You sure?", method: :delete, remote: "true" } }
             %span.glyphicon.glyphicon-remove
-        .timestamp
-          %span{ title: "#{task.created_at.strftime('Hour: %H:%M')}"}
-            = task.created_at.strftime("%d %b %Y")
+      .timestamp
+        %span
+          = task.created_at.strftime("%d %b %Y Hour: %H:%M")

@@ -1,9 +1,10 @@
 - if logged_in?
-  = render 'shared/nav_logged_index'
-  .container#main-page
+  = render 'shared/nav_logged'
+  .container.main-page
     .row
       = render 'shared/flash_message'
-      .col-xs-12.col-sm-10.col-sm-offset-1.col-md-8.col-md-offset-2
+      .user-feed.text-center
+        = render 'tasks/task_form'
         .users-todo
           #todo-tasks
             %h4
@@ -24,18 +25,18 @@
               = render @done_tasks
 - else
   = render 'shared/nav_non_logged_in'
-  .container#welcome
+  .container.full-width
     .row
       = render 'shared/flash_message'
       .text-center
         = link_to 'Send activation email again', new_activation_path,
                   class: 'btn orange-gradient-btn', id: "activation-btn"
-        %h2 Organize your time with ToDo list and free your mind!
-      .login-form
+        %h2.fancy-font Organize your time with ToDo list and free your mind!
+      .form-white-box
         = render 'sessions/new'
-  .container#about
+  .container
     .row.text-center
-      %h2 About
+      %h2.fancy-font About
     %br  
     = render 'layouts/footer'
 
@@ -43,3 +44,4 @@
   = render 'shared/signup_modal'
 
 
+      

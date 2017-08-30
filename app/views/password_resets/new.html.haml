@@ -1,13 +1,16 @@
 = render 'shared/nav_non_logged_in'
 
-.container#welcome
+.container.full-width
   .row
     = render 'shared/flash_message'
-    .col-xs-8.col-xs-offset-2.col-sm-4.col-sm-offset-6.col-lg-3.col-lg-offset-7.forms
-      = simple_form_for(:password_reset, url: password_resets_path) do |f|
-        = f.input :email, placeholder: "Write your email", label: false
-        .text-center
-          = f.button :submit, "OK!", class: "btn orange-gradient-btn"
+    .form-white-box.increase-margin
+      .form-inside
+        .inside-lines
+          %h4 Write your email
+        = simple_form_for(:password_reset, url: password_resets_path) do |f|
+          = f.input :email, placeholder: 'user@domain.com', label: false
+          .text-center
+            = f.button :submit, "OK!", class: "btn orange-gradient-btn"
 
 / Modal
 = render 'shared/signup_modal'

@@ -1,10 +1,9 @@
-%nav.navbar.navbar-fixed-top
+%nav.navbar.navbar-fixed-top.mobile
   .container-fluid
-    .mobile-nav
-      .navbar-header
-        = link_to 'ToDo', root_path, class: "navbar-brand"
-      %ul.nav.navbar-nav.navbar-right
-        %li
-          %a{class: "btn navbar-btn orange-gradient-btn", "data-toggle": "modal",
-            "href": "#signupModal" }
-            Sign up
+    .navbar-header
+      = link_to 'ToDo', root_path, class: "navbar-brand"
+    %ul.nav.navbar-nav.navbar-right
+      %li
+        %a.btn.navbar-btn.orange-gradient-btn#signup-btn{"data-toggle": "modal",
+                                                         "href": "#signupModal"}
+          Sign up

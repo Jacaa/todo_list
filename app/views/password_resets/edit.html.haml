@@ -1,11 +1,14 @@
 = render 'shared/nav_non_logged_in'
-.container#welcome
+.container.full-width
   .row
-    .col-xs-8.col-xs-offset-2.col-sm-4.col-sm-offset-6.col-lg-3.col-lg-offset-7.forms
-      = simple_form_for(@user, url: password_reset_path(params[:id])) do |f|
-        = f.input :password, placeholder: "Password", label: false
-        = f.input :password_confirmation, placeholder: "Password confirmation",
-                                          label: false
-        = hidden_field_tag :email, @user.email
-        .text-center
-          = f.button :submit, "Change password", class: "btn orange-gradient-btn"
+    .form-white-box.increase-margin
+      .form-inside
+        .inside-lines
+          %h4 Set new password
+        = simple_form_for(@user, url: password_reset_path(params[:id])) do |f|
+          = f.input :password, placeholder: "Password", label: false
+          = f.input :password_confirmation, placeholder: "Password confirmation",
+                                            label: false
+          = hidden_field_tag :email, @user.email
+          .text-center
+            = f.button :submit, "Change password", class: "btn orange-gradient-btn"
