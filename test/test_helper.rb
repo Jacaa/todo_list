@@ -21,6 +21,10 @@ class ActiveSupport::TestCase
   def user_is_logged_in?
     !session[:user_id].nil?
   end
+
+  def submitted_email_was_saved?
+    !session[:last_email].nil?
+  end
 end
 
 class ActionDispatch::IntegrationTest

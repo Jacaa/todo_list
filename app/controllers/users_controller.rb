@@ -8,6 +8,7 @@ class UsersController < ApplicationController
     if @user.save
       @user.send_activation_email
       flash[:info] = "Please check your email for ending signup process."
+      save_email(@user)
       redirect_to root_url
     else
        respond_to :js
@@ -25,6 +26,7 @@ class UsersController < ApplicationController
         @user.update_attribute(:activated, false)
         @user.send_activation_email
         flash[:info] = "Please check your email for activation link."
+        save_email(@user)
         redirect_to root_url
       else
         flash[:success] = "Profile updated!"

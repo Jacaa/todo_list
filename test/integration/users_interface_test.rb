@@ -5,10 +5,10 @@ class UsersInterfaceTest < ActionDispatch::IntegrationTest
   def setup
     ActionMailer::Base.deliveries.clear
     @user = users(:jack)
-    log_in_as @user
   end
 
   test "edit user" do
+    log_in_as @user
     get edit_user_path(@user)
     assert_template 'users/edit'
     # Unsuccesfull email edit
@@ -24,6 +24,8 @@ class UsersInterfaceTest < ActionDispatch::IntegrationTest
     assert_equal new_email, @user.email
     assert_not @user.activated?
     assert_equal 1, ActionMailer::Base.deliveries.size
+    assert submitted_email_was_saved?
+    assert_equal session[:last_email], @user.email
     assert_not flash.empty?
     assert_redirected_to root_url
     # Try click activation link with old email
@@ -41,12 +43,24 @@ class UsersInterfaceTest < ActionDispatch::IntegrationTest
   end
 
   test "destroy user" do
+    log_in_as @user
     get edit_user_path(@user)
     assert_template 'users/edit'
     assert_select 'a', text: 'Delete profile'
     assert_difference 'User.count', -1 do
       delete user_path(@user)
     end
+    assert_not flash.empty?
+    assert_redirected_to root_url
+  end
+
+  test "send activation link again" do
+    @user.toggle!(:activated)
+    log_in_as @user
+    assert submitted_email_was_saved?
+    assert_equal session[:last_email], @user.email
+    post activations_path
+    assert_equal 1, ActionMailer::Base.deliveries.size
     assert_not flash.empty?
     assert_redirected_to root_url
   end

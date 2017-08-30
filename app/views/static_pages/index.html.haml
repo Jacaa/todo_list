@@ -29,7 +29,7 @@
     .row
       = render 'shared/flash_message'
       .text-center
-        = link_to 'Send activation email again', new_activation_path,
+        = link_to 'Send activation email again', activations_path, method: :post,
                   class: 'btn orange-gradient-btn', id: "activation-btn"
         %h2.fancy-font Organize your time with ToDo list and free your mind!
       .form-white-box

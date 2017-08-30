@@ -5,7 +5,7 @@ class ActivationsController < ApplicationController
   end
 
   def create
-    @user = User.find_by_email(params[:activation][:email].downcase)
+    @user = User.find_by_email(session[:last_email])
     if @user
       @user.send_activation_email
       flash[:info] = "Check your email for activation link."
