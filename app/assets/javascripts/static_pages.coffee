@@ -7,8 +7,8 @@ $(document).on 'turbolinks:load', ->
   # Clear errors and inputs after closing signup form
   $("#signupModal").on "hidden.bs.modal", ->
     $('.form-group').each ->
-      $(this).removeClass('has-error')
-      $(this).find('span').hide()
+      $(@).removeClass('has-error')
+      $(@).find('span').hide()
     $("#user_email").val('')
     $("#user_name").val('')
     $("#user_password").val('')
@@ -36,7 +36,22 @@ $(document).on 'turbolinks:load', ->
   
   $('.edit_user #user_email').click ->
     alert("It is needed to activate your account again after changing email address!")
+
   
   # Show done task's timestamp
   $('.users-done [id^="task-"]').click ->
     $(this).find('.timestamp').toggle()
+  
+
+  # Active 'Add' button when input is not nil
+  # $('body').on 'click','input.disabled', (event) ->
+  #   event.preventDefault()
+
+  $('textarea').bind 'input propertychange', ->
+    $('#add_new').removeClass('disabled')
+    if !$(@).val().length
+      $('#add_new').addClass('disabled')
+
+  $('#add_new').mouseup ->
+    $(@).addClass('disabled')
+    

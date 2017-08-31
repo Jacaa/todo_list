@@ -14,14 +14,18 @@ $dark-grey:    #4D4D4D;
 $twitter-color:#55ACEE;
 $google-color: #DD4B39;
 $github-color: #545454;
+$link-color:   #337ab7;
+$link-visited: #23527c;
 
 $black-opacity:  rgba(0,0,0,0.3);
 $white-opacity:  rgba(255, 255, 255, 0.8);
+$full-opacity:   rgba(0, 0, 0, 0);
 $orange-opacity: rgba(255, 130, 0, 0.6);
 
 $black:        black;
 $almost-black: #333;
 $white:        white;
+
 
 /* fonts */
 
@@ -92,12 +96,32 @@ footer {
 
 /* forms */
 
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus
+input:-webkit-autofill {
+  transition: background-color 5000s ease-in-out 0s;
+}
+
 .form-group {
+  [placeholder]:focus::-webkit-input-placeholder {
+    transition: opacity 0.3s 0.1s ease; 
+    opacity: 0;
+  }
+  input, textarea {
+    overflow-wrap: break-word;
+    resize: none;
+    border: none;
+    box-shadow: none;
+    border-bottom: 1px solid $light-orange;
+    border-radius: 0;
+    line-height: 15px;
+    font-size: 1.2em;
+    background-color: $full-opacity;
+  }
   .form-control:focus {
-    border-color: $light-orange; 
-    outline: 0;
-    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px $orange-opacity;
-    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px $orange-opacity;
+    box-shadow: none;
+    border-bottom: 2px solid $light-orange;
   }
   &.has-error {
     .form-control {
@@ -149,11 +173,10 @@ nav {
 
 /* login-form */
 
-.form-white-box.increase-margin {
-  margin: 159px auto;
-}
-
 .form-white-box {
+  &.increase-margin {
+    margin: 159px auto;
+  }
   width: 350px;
   margin: auto;
   margin-top: 40px;
@@ -304,15 +327,6 @@ nav {
 
 #new_task {
   margin: 20px 0;
-  textarea {
-    resize: none;
-    border: none;
-    box-shadow: none;
-    border-bottom: 1px solid $light-orange;
-    border-radius: 0;
-    line-height: 15px;
-    font-size: 1.2em;
-  }
   .form-control:focus {
     box-shadow: none;
     border-bottom: 2px solid $light-orange;
@@ -334,16 +348,10 @@ nav {
 
 .edit_task {
   textarea {
-    resize: none;
-    border: none;
-    box-shadow: none;
     border: 1px solid $light-orange;
-    border-radius: 0;
-    line-height: 15px;
-    font-size: 1.2em;
   }
   .form-control:focus {
-    box-shadow: none;
+    border: 1px solid $light-orange;
   }
   span {
     background-color: $white;
@@ -355,6 +363,7 @@ nav {
     bottom: 6px;
     right: 15px;
     padding: 12px;
+    z-index: 999;
   }
 }
 
@@ -385,6 +394,18 @@ nav {
   }
   .users-todo, .users-done {
     text-align: left;
+    h4 {
+      color: $medium-grey;
+      display: inline-block;
+    }
+    #delete-all {
+      float: right;
+      margin-right: 6%;
+      color: $link-color;
+      &:hover {
+        color: $link-visited;
+      }
+    }
     a {
       color: $medium-grey;
       text-decoration: none;

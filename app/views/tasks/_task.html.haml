@@ -13,7 +13,7 @@
               data: { remote: "true" } }
             %span.glyphicon.glyphicon-pencil
           %a{href: task_path(task), title: "Delete task",
-              data: { confirm: "You sure?", method: :delete, remote: "true" } }
+              data: { method: :delete, remote: "true" } }
             %span.glyphicon.glyphicon-remove
       .timestamp
         %span
@@ -28,7 +28,7 @@
               data: { remote: "true" } }
             %span.glyphicon.glyphicon-repeat
           %a{href: task_path(task), title: "Delete task",
-              data: { confirm: "You sure?", method: :delete, remote: "true" } }
+              data: { method: :delete, remote: "true" } }
             %span.glyphicon.glyphicon-remove
       .timestamp
         %span

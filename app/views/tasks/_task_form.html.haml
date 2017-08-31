@@ -1,6 +1,6 @@
 = simple_form_for(@task, remote: true) do |f|
   = f.input :content, placeholder: "Add new task...", label: false
-  = f.button :submit, 'Add', class: "btn orange-gradient-btn"
+  = f.button :submit, 'Add', class: "btn orange-gradient-btn disabled", id: :add_new
 
 
 

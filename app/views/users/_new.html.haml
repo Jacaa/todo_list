@@ -1,6 +1,6 @@
 = simple_form_for(@user, remote: true, html: {novalidate: 'novalidate'}) do |f|
   = f.input :email, placeholder: 'user@domain.com', label: false
-  = f.input :password, placeholder: 'Password', label: false
+  = f.input :password, placeholder: 'Password (min 6 chars)', label: false
   = f.input :password_confirmation,
             placeholder: 'Password confirmation', label: false
   .text-center

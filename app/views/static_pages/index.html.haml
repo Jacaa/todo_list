@@ -10,7 +10,10 @@
             %h4
               Todo (
               %span#todo_count= @todo_count
-              ) 
+              )
+            = link_to "Delete all", delete_all_task_path(@user, done: false),
+                                    method: :delete, id: 'delete-all', 
+                                    data: { confirm: "Are you sure you want to delete all Todo tasks?" }
             %ul.tasks
               = render @todo_tasks
           #no-tasks.text-center
@@ -20,7 +23,10 @@
             %h4
               Done (
               %span#done_count= @done_count
-              ) 
+              )
+            = link_to "Delete all", delete_all_task_path(@user, done: true),
+                                    method: :delete, id: 'delete-all', 
+                                    data: { confirm: "Are you sure you want to delete all Done tasks?" }
             %ul.tasks
               = render @done_tasks
 - else

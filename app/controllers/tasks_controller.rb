@@ -14,6 +14,12 @@ class TasksController < ApplicationController
       end
     end
   end
+  
+  def delete_all
+    @user = User.find(params[:id])
+    Task.where(user_id: @user.id).where(done: params[:done]).delete_all
+    redirect_to root_url
+  end
 
   def destroy
     @task.destroy
