@@ -530,11 +530,14 @@ nav {
   }
 
   .full-width {
-    margin-top: 100px;
     background-image: image-url('welcome-background-mobile.jpg');
   }
 
   .user-feed {
     padding: 0 2%;
+  }
+
+  .esc {
+    display: none;
   }
 }
