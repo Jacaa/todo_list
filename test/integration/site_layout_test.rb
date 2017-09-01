@@ -59,11 +59,30 @@ class SiteLayoutTest < ActionDispatch::IntegrationTest
     end
   end
 
+  test "edit user signed up with email page layout" do
+    user = users(:jack)
+    log_in_as user
+    get edit_user_path(user)
+    assert_select "input[id=user_email]",                 count: 1
+    assert_select "input[id=user_password]",              count: 1
+    assert_select "input[id=user_password_confirmation]", count: 1
+    assert_select "input[value='Save changes']",          count: 1
+    assert_select "a", text: "Delete profile"
+  end
+
+  test "edit user signed up with social media page layout" do
+    user = users(:jack_omniauth)
+    log_in_as user
+    get edit_user_path(user)
+    assert_select "form", false
+    assert_select "a", text: "Delete profile"
+  end
+
   test "new password-reset page layout" do
     get new_password_reset_path
     assert_template 'password_resets/new'
     assert_select "input[id=password_reset_email]",  count: 1
-    assert_select "input[value='OK!']",       count: 1
+    assert_select "input[value='OK!']",              count: 1
   end
 
   test "edit password-reset page layout" do

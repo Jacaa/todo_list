@@ -12,16 +12,16 @@
             = f.button :submit, "Save changes", class: "btn orange-gradient-btn"
     - else
       .user-info
-        = image_tag(@auth_info['info']['image'], class: 'img-circle')
+        = image_tag(@user_image, class: 'img-circle') if @user_image
         %h3 
           Logged in with: 
-          = @auth_info['provider'].split('_').first.upcase
+          = @user.provider.split('_').first.upcase
         %h4 
           Name:
-          = @auth_info['info']['name']
+          = @user_name
         %h4 
           Email:
-          = @auth_info['info']['email']
+          = @user.email
     .col-xs-8.col-xs-offset-2
       .text-center
         = link_to "Delete profile", @user, method: :delete, 

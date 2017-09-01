@@ -36,17 +36,9 @@ $(document).on 'turbolinks:load', ->
   
   $('.edit_user #user_email').click ->
     alert("It is needed to activate your account again after changing email address!")
-
-  
-  # Show done task's timestamp
-  $('.users-done [id^="task-"]').click ->
-    $(this).find('.timestamp').toggle()
   
 
   # Active 'Add' button when input is not nil
-  # $('body').on 'click','input.disabled', (event) ->
-  #   event.preventDefault()
-
   $('textarea').bind 'input propertychange', ->
     $('#add_new').removeClass('disabled')
     if !$(@).val().length
@@ -54,4 +46,19 @@ $(document).on 'turbolinks:load', ->
 
   $('#add_new').mouseup ->
     $(@).addClass('disabled')
+
+  # $('body').on 'click','input.disabled', (event) ->
+  #   event.preventDefault()
+
+  # Detects changes in DOM
+  $(document).on "DOMSubtreeModified", ->
+    # Cancel edit task
+    task_form = $('[id^="edit_task_"]')
+    task_content = task_form.find('#task_content')
+    default_text = task_content.val()
+    task_content.keyup (e) ->
+      if e.keyCode == 27
+        console.log 'esc'
+        task_form.closest('.content').html(default_text)
+        task_form.hide()
     

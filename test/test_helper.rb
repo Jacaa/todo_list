@@ -7,9 +7,12 @@ OmniAuth.config.test_mode = true
 omniauth_github_hash = {'provider' => 'github',
                         'uid' => '11111',
                         'info' => {
-                            'email' => 'jack@todo.com'
+                            'email' => 'jack@todo.com',
+                            'name' => 'Jack Miko',
+                            'image' => 'http://example.image/123'
                         }
                       }
+
 omniauth_google_hash = {'provider' => 'google',
                         'uid' => '22222',
                         'info' => {

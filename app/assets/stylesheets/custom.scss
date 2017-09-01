@@ -308,7 +308,7 @@ nav {
   .modal-dialog {
     width: 350px;
     margin: auto;
-    margin-top: 40px;
+    margin-top: 140px;
     .modal-content {
       .modal-header {
         text-align: center;
@@ -349,7 +349,7 @@ nav {
 
 .edit_task {
   textarea {
-    border: 1px solid $light-orange;
+    border: 1px solid $light-grey;
   }
   .form-control:focus {
     border: 1px solid $light-orange;
@@ -365,6 +365,13 @@ nav {
     right: 15px;
     padding: 12px;
     z-index: 999;
+  }
+  .esc {
+    position: relative;
+    bottom: 10px;
+    font-size: 0.8em;
+    font-style: italic;
+    color: $link-color;
   }
 }
 
@@ -477,6 +484,9 @@ nav {
       li {
         &:hover {
           box-shadow: 0px 0px 10px $medium-grey;
+          .timestamp {
+            display: block;
+          }
           a {
             color: $medium-grey;
             &:hover {
@@ -488,7 +498,7 @@ nav {
       .content { 
         margin-left: 5%;
         color: $medium-grey;
-        }
+      }
       .timestamp {
         display: none;
       }
@@ -502,7 +512,7 @@ nav {
 
   #signupModal {
     .modal-dialog {
-      margin-top: 200px;
+      margin-top: 50px;
     }
   }
 

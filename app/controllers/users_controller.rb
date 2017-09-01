@@ -8,7 +8,7 @@ class UsersController < ApplicationController
     if @user.save
       @user.send_activation_email
       msg = "Please check your email for ending signup process, "
-      msg += "Email with activation link should be delivered soon."
+      msg += "email with activation link should be delivered soon."
       flash[:warning] = msg
       save_email(@user)
       redirect_to root_url
@@ -53,7 +53,8 @@ class UsersController < ApplicationController
 
     def get_user
       @user = User.find(params[:id])
-      @auth_info = session[:omniauth] if session[:omniauth]
+      @user_name = cookies[:user_name] if cookies[:user_name]
+      @user_image = cookies[:user_image] if cookies[:user_image]
     end
 
     def correct_user

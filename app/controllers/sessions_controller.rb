@@ -22,7 +22,7 @@ class SessionsController < ApplicationController
 
   def create_omniauth
     auth = request.env['omniauth.auth']
-    session[:omniauth] = auth.except('extra')
+    auth_without_extra = auth.except('extra')
     user = User.sign_in_from_omniauth(auth)
     email = auth[:info][:email]
     unless user
@@ -43,7 +43,9 @@ class SessionsController < ApplicationController
         flash[:info] = msg
       end
     end
-    omniauth_log_in user
+    log_in user
+    remember user
+    save_info auth_without_extra
     redirect_to root_url
   end
 

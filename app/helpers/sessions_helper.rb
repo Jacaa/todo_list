@@ -1,18 +1,15 @@
 module SessionsHelper
 
   def log_in(user)
-    session[:user_id] = user.id
-  end
-
-  def omniauth_log_in(user)
-    session[:user_id] = user.uid if user
+    session[:user_id] = user.id if user
   end
 
   def log_out
-    session.delete(:omniauth)
     session.delete(:user_id)
     cookies.delete(:user_id)
     cookies.delete(:remember_token)
+    cookies.delete(:user_name)
+    cookies.delete(:user_image)
     @current_user = nil
   end
 
@@ -37,7 +34,14 @@ module SessionsHelper
   end
   
   def remember(user)
-    cookies.permanent.signed[:user_id] = user.id
-    cookies.permanent[:remember_token] = user.remember_token
+    if user
+      cookies.permanent.signed[:user_id] = user.id
+      cookies.permanent[:remember_token] = user.remember_token
+    end
+  end
+
+  def save_info(auth)
+    cookies.permanent[:user_name] = auth['info']['name']
+    cookies.permanent[:user_image] = auth['info']['image']
   end
 end

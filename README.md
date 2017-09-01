@@ -1,24 +1,8 @@
-# README
+# ToDo by Jaca
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Create todo list to organize your time. 
 
-Things you may want to cover:
+App is available:
+[here](https://jaca-todolist.herokuapp.com/)
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Enjoy :)

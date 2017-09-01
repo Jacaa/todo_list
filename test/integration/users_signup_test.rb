@@ -31,7 +31,7 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
     user = assigns(:user)
     assert_not user.activated?
     assert submitted_email_was_saved?
-    assert_equal session[:last_email], user.email
+    assert_equal session['last_email'], user.email
     # Try to log in before activation.
     log_in_as(user)
     assert_not user_is_logged_in?
@@ -58,11 +58,16 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
       get '/auth/github/callback'
     end
     assert_equal 1, ActionMailer::Base.deliveries.size
-    assert_not_empty session[:omniauth]
-    assert_redirected_to root_url
+    auth = request.env['omniauth.auth']
+    assert_equal cookies['user_name'], auth['info']['name']
+    assert_equal cookies['user_image'], auth['info']['image']
     assert user_is_logged_in?
+    assert_redirected_to root_url
     # Logout
     delete logout_path
+    assert_empty cookies['user_name']
+    assert_empty cookies['user_image']
+    assert_not user_is_logged_in?
     # Login using github - no new record
     assert_no_difference 'User.count' do
       get '/auth/github/callback'
