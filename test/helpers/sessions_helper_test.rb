@@ -12,7 +12,7 @@ class SessionsHelperTest < ActionView::TestCase
     assert_not_nil current_user
   end
 
-  test "current_user returns right user when the session has user uid" do
+  test "current_user returns right user when the cookies has user uid" do
     omniauth_log_in @omniauth_user
     assert_not_nil current_user
   end

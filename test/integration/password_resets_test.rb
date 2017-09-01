@@ -53,6 +53,16 @@ class PasswordResetsTest < ActionDispatch::IntegrationTest
     assert_redirected_to root_url
   end
 
+  test "password reset for account created with oauth" do
+    @user = users(:jack_omniauth)
+    post password_resets_path, params: { password_reset: { email: @user.email }}
+    # Don't generate password reset token
+    assert_nil @user.reload.password_reset_token
+    assert_equal 1, ActionMailer::Base.deliveries.size
+    assert_not flash.empty?
+    assert_redirected_to root_url
+  end
+
   test "expired token" do
     post password_resets_path, params: { password_reset: { email: @user.email }}
     @user = assigns(:user)

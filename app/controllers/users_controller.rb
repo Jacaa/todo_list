@@ -7,7 +7,9 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       @user.send_activation_email
-      flash[:info] = "Please check your email for ending signup process."
+      msg = "Please check your email for ending signup process, "
+      msg += "Email with activation link should be delivered soon."
+      flash[:warning] = msg
       save_email(@user)
       redirect_to root_url
     else
@@ -25,7 +27,7 @@ class UsersController < ApplicationController
         log_out
         @user.update_attribute(:activated, false)
         @user.send_activation_email
-        flash[:info] = "Profile updated! Now please check your email for activation link."
+        flash[:warning] = "Profile updated! Now please check your email for activation link."
         save_email(@user)
         redirect_to root_url
       else
@@ -39,7 +41,7 @@ class UsersController < ApplicationController
 
   def destroy
     @user.destroy
-    flash[:info] = "User deleted"
+    flash[:info] = "Account deleted!"
     redirect_to root_url
   end
 

@@ -10,8 +10,12 @@ class PasswordResetsController < ApplicationController
   def create
     @user = User.find_by_email(params[:password_reset][:email].downcase)
     if @user
-      @user.create_password_reset_token
-      @user.send_password_reset_email
+      if @user.provider?
+        @user.send_account_info_email
+      else
+        @user.create_password_reset_token
+        @user.send_password_reset_email
+      end
       flash[:info] = "Email was sent with instructions."
       redirect_to root_url
     else

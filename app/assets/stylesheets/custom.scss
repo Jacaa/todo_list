@@ -11,7 +11,7 @@ $red:          #FF1100;
 $light-grey:   #EEE;
 $medium-grey:  #AAA;
 $dark-grey:    #4D4D4D;
-$twitter-color:#55ACEE;
+$fb-color:     #4267B2;
 $google-color: #DD4B39;
 $github-color: #545454;
 $link-color:   #337ab7;
@@ -53,7 +53,6 @@ footer {
 }
 
 .full-width {
-  margin-top: 50px;
   width: 100%;
   padding-bottom: 100px;
   background-image: image-url('welcome-background.jpg');
@@ -135,6 +134,8 @@ input:-webkit-autofill {
 }
 
 /* navbar */
+
+nav.navbar.navbar-static.mobile.no-margin { margin: 0 }
 
 nav {
   box-shadow: 1px 1px 10px $medium-grey;
@@ -243,7 +244,7 @@ nav {
       }
       .text {
         white-space: nowrap; 
-        font-size: 1em;
+        font-size: 0.85em;
         position: absolute;
         overflow: hidden;
         top: 50%;
@@ -268,8 +269,8 @@ nav {
       }
 
     }
-    .twitter {
-      background-color: $twitter-color;
+    .facebook {
+      background-color: $fb-color;
     }
     .google {
       background-color: $google-color;
@@ -307,7 +308,7 @@ nav {
   .modal-dialog {
     width: 350px;
     margin: auto;
-    margin-top: 140px;
+    margin-top: 40px;
     .modal-content {
       .modal-header {
         text-align: center;

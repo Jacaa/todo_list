@@ -15,7 +15,7 @@
         = image_tag(@auth_info['info']['image'], class: 'img-circle')
         %h3 
           Logged in with: 
-          = @auth_info['provider'].upcase
+          = @auth_info['provider'].split('_').first.upcase
         %h4 
           Name:
           = @auth_info['info']['name']

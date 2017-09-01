@@ -32,8 +32,8 @@ class User < ApplicationRecord
 
   def self.create_user(auth)
     random_password = User.new_token[0..15]
-    create(provider: auth['provider'], uid: auth['uid'],
-           email: auth['info']['email'], activated: true,
+    create(provider: auth[:provider], uid: auth[:uid],
+           email: auth[:info][:email], activated: true,
            password: random_password,
            password_confirmation: random_password)
   end
@@ -63,7 +63,11 @@ class User < ApplicationRecord
   def send_welcome_email
     UserMailer.welcome(self).deliver_now
   end
-
+  
+  def send_account_info_email
+    UserMailer.account_info(self).deliver_now
+  end
+  
   private
 
     def downcase_email

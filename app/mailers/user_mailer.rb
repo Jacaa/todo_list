@@ -19,4 +19,9 @@ class UserMailer < ApplicationMailer
     @user = user
     mail to: user.email, subject: "Welcome!"
   end
+
+  def account_info(user)
+    @user = user
+    mail to: user.email, subject: "Account information!"
+  end
 end

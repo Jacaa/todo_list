@@ -52,7 +52,7 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
     assert user_is_logged_in?
   end
 
-  test "signup using github followed by login using github" do
+  test "signup using oauth" do
     # Signup using github
     assert_difference 'User.count', 1 do
       get '/auth/github/callback'
@@ -60,16 +60,30 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
     assert_equal 1, ActionMailer::Base.deliveries.size
     assert_not_empty session[:omniauth]
     assert_redirected_to root_url
-    follow_redirect!
-    assert_template 'static_pages/index'
     assert user_is_logged_in?
     # Logout
     delete logout_path
-    # Login using github
+    # Login using github - no new record
     assert_no_difference 'User.count' do
       get '/auth/github/callback'
     end
     assert_equal 1, ActionMailer::Base.deliveries.size
+    assert user_is_logged_in?
+    # Logout
+    delete logout_path
+    # Try signup with google but with same email as github
+    assert_no_difference 'User.count' do
+      get '/auth/google_oauth2/callback'
+    end
+    assert_equal 1, ActionMailer::Base.deliveries.size
+    assert_not user_is_logged_in?
+    assert_not flash.empty?
+    assert_redirected_to root_path
+    # Signup with facebook and other email
+    assert_difference 'User.count', 1 do
+      get '/auth/facebook/callback'
+    end
+    assert_equal 2, ActionMailer::Base.deliveries.size
     assert user_is_logged_in?
   end
 end

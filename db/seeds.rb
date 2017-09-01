@@ -6,7 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-User.create!(email: "jacek@example.com",
+User.create!(email: "jack@todo.com",
              password: "123123",
              password_confirmation: "123123",
              activated: true)
@@ -17,3 +17,11 @@ user = User.first
   content = "#{'Lorem ipsum '*(n+1)}"
   user.tasks.create!(content: content)
 end
+
+
+User.create!(email: "jack-oauth@todo.com",
+             password: "123123",
+             password_confirmation: "123123",
+             activated: true,
+             provider: 'example',
+             uid: '9999999')

@@ -20,4 +20,10 @@ class UserMailerPreview < ActionMailer::Preview
     user = User.last
     UserMailer.welcome(user)
   end
+
+  # Preview this email at http://localhost:3000/rails/mailers/user_mailer/account_info
+  def account_info
+    user = User.last
+    UserMailer.account_info(user)
+  end
 end

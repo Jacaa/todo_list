@@ -31,7 +31,7 @@ $(document).on 'turbolinks:load', ->
     $("#done-tasks").show()
 
   # Button for sending activations email
-  if $('.alert-info').length or $('.alert-warning').length
+  if $('.alert-warning').length
     $('#activation-btn').show()
   
   $('.edit_user #user_email').click ->

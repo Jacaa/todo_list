@@ -5,7 +5,7 @@ module SessionsHelper
   end
 
   def omniauth_log_in(user)
-    session[:user_id] = user.uid
+    session[:user_id] = user.uid if user
   end
 
   def log_out

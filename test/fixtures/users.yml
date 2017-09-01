@@ -14,7 +14,7 @@ jack_omniauth:
   activation_token: <%= User.new_token %>
   activated: true
   uid: 123321
-  provider: omniauth
+  provider: example
 
 other:
   email: other@example.com

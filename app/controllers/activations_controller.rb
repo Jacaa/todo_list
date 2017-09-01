@@ -8,7 +8,7 @@ class ActivationsController < ApplicationController
     @user = User.find_by_email(session[:last_email])
     if @user
       @user.send_activation_email
-      flash[:info] = "Check your email for activation link."
+      flash[:warning] = "Email should be delivered soon, be patient :)"
       redirect_to root_url
     else
       flash[:danger] = "Email not found."

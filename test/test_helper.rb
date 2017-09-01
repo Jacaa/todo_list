@@ -4,15 +4,28 @@ require "minitest/reporters"
 Minitest::Reporters.use!
 
 OmniAuth.config.test_mode = true
-omniauth_hash = { 'provider' => 'github',
-                  'uid' => '12345',
-                  'info' => {
-                      'name' => 'jack',
-                      'email' => 'jack@github.com'
-                  }
-                }
-
-OmniAuth.config.add_mock(:github, omniauth_hash)
+omniauth_github_hash = {'provider' => 'github',
+                        'uid' => '11111',
+                        'info' => {
+                            'email' => 'jack@todo.com'
+                        }
+                      }
+omniauth_google_hash = {'provider' => 'google',
+                        'uid' => '22222',
+                        'info' => {
+                            'email' => 'jack@todo.com'
+                        }
+                      }
+omniauth_facebook_hash = {'provider' => 'facebook',
+                          'uid' => '33333',
+                          'info' => {
+                            'email' => 'jack@facebook.com'
+                          }
+                        }
+                        
+OmniAuth.config.add_mock(:github, omniauth_github_hash)
+OmniAuth.config.add_mock(:google_oauth2, omniauth_google_hash)
+OmniAuth.config.add_mock(:facebook, omniauth_facebook_hash)
 
 class ActiveSupport::TestCase
   # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.

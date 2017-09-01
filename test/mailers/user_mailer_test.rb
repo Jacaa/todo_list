@@ -30,4 +30,13 @@ class UserMailerTest < ActionMailer::TestCase
     assert_equal ["noreply@todo.com"],        mail.from
     assert_match user.provider.upcase,        mail.body.encoded
   end
+
+  test "account info" do
+    user = users(:jack_omniauth)
+    mail = UserMailer.account_info(user)
+    assert_equal "Account information!",      mail.subject
+    assert_equal [user.email],                mail.to
+    assert_equal ["noreply@todo.com"],        mail.from
+    assert_match user.provider.upcase,        mail.body.encoded
+  end
 end
