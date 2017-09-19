@@ -12,4 +12,7 @@ class StaticPagesController < ApplicationController
       @user = User.new
     end
   end
+
+  def cookies_eu
+  end
 end

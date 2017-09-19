@@ -506,6 +506,55 @@ nav {
   }
 }
 
+/* cookies view */
+
+.cookies-eu-container {
+  width: 80%;
+  margin: auto;
+  color: $dark-grey;
+  text-align: justify;
+  .text-center {
+    margin-top: 15px;
+    .orange-gradient-btn {
+      font-size: 1.5em;
+      color: $white;
+      border-radius: 4px;
+      padding: 3px 6px;
+      text-decoration: none;
+      &:hover {
+        color: $white;
+      }
+    }
+    a {
+      font-family: $fancy-font;
+      font-size: 2em;
+      color: $dark-grey;
+      &:hover {
+        color: $light-orange;
+        text-decoration: none;
+      }
+    }
+  }
+}
+
+.cookies-eu {
+  background-color: $white;
+  color: $dark-grey;
+  border-top: 1px solid $light-orange;
+  border-bottom: 1px solid $light-orange;
+  position: static;
+}
+
+.cookies-eu .cookies-eu-button-holder .cookies-eu-ok {
+  background-image: -webkit-linear-gradient($light-orange, $dark-orange);
+  border-radius: 4px;
+  padding: 3px 12px;
+  &:hover {
+    font-weight: bold;
+    background-image: -webkit-linear-gradient($dark-orange, $light-orange);
+  }
+}
+
 /* media */
 
 @media only screen and (max-width: 767px) {

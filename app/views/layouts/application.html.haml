@@ -5,4 +5,5 @@
     = render 'layouts/default'
     = render 'layouts/shim' 
   %body
+    = render 'cookies_eu/consent_banner', link: '/cookies', target: '_blank'
     = yield

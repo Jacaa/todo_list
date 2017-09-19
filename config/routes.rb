@@ -24,4 +24,6 @@ Rails.application.routes.draw do
       delete :delete_all
     end
   end
+
+  get     '/cookies', to: 'static_pages#cookies_eu'
 end
